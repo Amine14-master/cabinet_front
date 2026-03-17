@@ -66,8 +66,8 @@ const dropdownOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
 
 const menuItems = [
-  { href: '/profile', icon: UserCircleIcon, text: 'Edit profile' },
-  { href: '/profile', icon: SettingsIcon, text: 'Account settings' },
+  { href: '/profile', icon: UserCircleIcon, text: ' Modifier le profil' },
+  { href: '/profile', icon: SettingsIcon, text: 'Paramètres du compte' },
   { href: '/profile', icon: InfoCircleIcon, text: 'Support' },
 ]
 

@@ -39,11 +39,19 @@ const router = createRouter({
       },
     },
     {
-      path: '/basic-tables',
-      name: 'Basic Tables',
-      component: () => import('../views/Tables/BasicTables.vue'),
+      path: '/patients',
+      name: 'Patients',
+      component: () => import('../views/Tables/PatientsList.vue'),
       meta: {
-        title: 'Basic Tables',
+        title: 'Patients',
+      },
+    },
+    {
+      path: '/rendez-vous',
+      name: 'Rendez-vous',  
+      component: () => import('../views/Tables/RendezVous.vue'),
+      meta: {
+        title: 'Rendez-vous',
       },
     },
     {
