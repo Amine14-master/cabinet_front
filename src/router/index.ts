@@ -2,158 +2,179 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  scrollBehavior(to, from, savedPosition) {
-    return savedPosition || { left: 0, top: 0 }
+
+  scrollBehavior() {
+    return { left: 0, top: 0 }
   },
+
   routes: [
-    {
-      path: '/',
-      name: 'Ecommerce',
-      component: () => import('../views/Ecommerce.vue'),
-      meta: {
-        title: 'eCommerce Dashboard',
-      },
-    },
-    {
-      path: '/calendar',
-      name: 'Calendar',
-      component: () => import('../views/Others/Calendar.vue'),
-      meta: {
-        title: 'Calendar',
-      },
-    },
-    {
-      path: '/profile',
-      name: 'Profile',
-      component: () => import('../views/Others/UserProfile.vue'),
-      meta: {
-        title: 'Profile',
-      },
-    },
-    {
-      path: '/form-elements',
-      name: 'Form Elements',
-      component: () => import('../views/Forms/FormElements.vue'),
-      meta: {
-        title: 'Form Elements',
-      },
-    },
-    {
-      path: '/patients',
-      name: 'Patients',
-      component: () => import('../views/Tables/PatientsList.vue'),
-      meta: {
-        title: 'Patients',
-      },
-    },
-    {
-      path: '/rendez-vous',
-      name: 'Rendez-vous',  
-      component: () => import('../views/Tables/RendezVous.vue'),
-      meta: {
-        title: 'Rendez-vous',
-      },
-    },
-    {
-      path: '/line-chart',
-      name: 'Line Chart',
-      component: () => import('../views/Chart/LineChart/LineChart.vue'),
-    },
-    {
-      path: '/bar-chart',
-      name: 'Bar Chart',
-      component: () => import('../views/Chart/BarChart/BarChart.vue'),
-    },
-    {
-      path: '/alerts',
-      name: 'Alerts',
-      component: () => import('../views/UiElements/Alerts.vue'),
-      meta: {
-        title: 'Alerts',
-      },
-    },
-    {
-      path: '/avatars',
-      name: 'Avatars',
-      component: () => import('../views/UiElements/Avatars.vue'),
-      meta: {
-        title: 'Avatars',
-      },
-    },
-    {
-      path: '/badge',
-      name: 'Badge',
-      component: () => import('../views/UiElements/Badges.vue'),
-      meta: {
-        title: 'Badge',
-      },
-    },
-
-    {
-      path: '/buttons',
-      name: 'Buttons',
-      component: () => import('../views/UiElements/Buttons.vue'),
-      meta: {
-        title: 'Buttons',
-      },
-    },
-
-    {
-      path: '/images',
-      name: 'Images',
-      component: () => import('../views/UiElements/Images.vue'),
-      meta: {
-        title: 'Images',
-      },
-    },
-    {
-      path: '/videos',
-      name: 'Videos',
-      component: () => import('../views/UiElements/Videos.vue'),
-      meta: {
-        title: 'Videos',
-      },
-    },
-    {
-      path: '/blank',
-      name: 'Blank',
-      component: () => import('../views/Pages/BlankPage.vue'),
-      meta: {
-        title: 'Blank',
-      },
-    },
-
-    {
-      path: '/error-404',
-      name: '404 Error',
-      component: () => import('../views/Errors/FourZeroFour.vue'),
-      meta: {
-        title: '404 Error',
-      },
-    },
-
+    // ================= AUTH =================
     {
       path: '/signin',
       name: 'Signin',
-      component: () => import('../views/Auth/Signin.vue'),
-      meta: {
-        title: 'Signin',
-      },
+      component: () => import('../modules/auth/pages/SigninPage.vue'),
+      meta: { title: 'Signin', requiresAuth: false },
     },
     {
       path: '/signup',
       name: 'Signup',
-      component: () => import('../views/Auth/Signup.vue'),
+      component: () => import('../modules/auth/pages/SignupPage.vue'),
+      meta: { title: 'Signup', requiresAuth: false },
+    },
+
+    // ================= DASHBOARD =================
+    {
+      path: '/',
+      name: 'Dashboard',
+      component: () => import('../modules/dashboard/pages/Dashboard.vue'),
+      meta: { title: 'Dashboard', requiresAuth: true },
+    },
+
+    // ================= CORE PAGES =================
+    {
+      path: '/working-days',
+      name: 'Jours de travail',
+      component: () => import('../modules/appointments/pages/DoctorWorkingDay.vue'),
+      meta: { title: 'Calendar', requiresAuth: true },
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: () => import('../modules/profile/pages/UserProfile.vue'),
+      meta: { title: 'Profile', requiresAuth: true },
+    },
+
+    {
+      path: '/security',
+      name: 'Security',
+      component: () => import('../modules/profile/pages/UserSecurity.vue'),
+      meta: { title: 'Security', requiresAuth: true },
+    },
+    {
+      path: '/form-elements',
+      name: 'FormElements',
+      component: () => import('../views/Forms/FormElements.vue'),
+      meta: { title: 'Form Elements', requiresAuth: true },
+    },
+
+    // ================= MODULES =================
+    // Change your Patient routes to this:
+    {
+      path: "/patients",
+      name: "PatientTable",
+      component: () => import("../modules/patients/pages/PatientsPage.vue"),
       meta: {
-        title: 'Signup',
+        title: "List Patients",
+        requiresAuth: true,
       },
+    },
+    {
+      path: '/patients/add',
+      name: 'AddPatient',
+      component: () => import('@/modules/patients/pages/AddPatientPage.vue'),
+      meta: { title: 'Ajouter un Patient', requiresAuth: true }
+    },
+    {
+      path: "/patients/:code",
+      name: "patient-details",
+      component: () => import("@/modules/patients/pages/DetailsPatientPage.vue"),
+    },
+    {
+      path: '/appointments',
+      name: 'RendezVous',
+      component: () => import('../modules/appointments/pages/RendezVous.vue'),
+      meta: { title: 'Rendez-vous', requiresAuth: true },
+    },
+    {
+      path: '/appointments/create',
+      name: 'RendezVousAdd',
+      component: () => import('../modules/appointments/pages/AddRendezVousPage.vue'),
+      meta: { title: 'Ajouter un Rendez-vous', requiresAuth: true },
+    },
+    {
+      path: '/consultations',
+      name: 'ConsultationsList',
+      component: () => import('@/modules/consultations/pages/ConsultationPage.vue')
+    },
+
+    {
+      path: '/consultations/create',
+      name: 'ConsultationCreate',
+      component: () => import('@/modules/consultations/pages/AddConsultationPage.vue')
+    },
+    {
+      path: '/consultations/:id',
+      name: 'ConsultationDetail',
+      component: () => import('@/modules/consultations/components/ConsultationDetail.vue')
+    },
+    {
+      path: '/ordonnances',
+      name: 'OrdonanceList',
+      component: () => import('@/modules/ordonnances/pages/OrdonnancesPage.vue')
+    },
+
+
+    {
+      path: '/medicaments',
+      name: 'MedicamentList',
+      component: () => import('@/modules/medicaments/pages/MedicamentsPage.vue')
+    },
+    {
+      path: '/medicaments/create',
+      name: 'MedicamentCreate',
+      component: () => import('@/modules/medicaments/pages/AddMedicamentsPage.vue')
+    },
+    // ================= TEAM =================
+
+
+    {
+      path: '/team',
+      name: 'Team',
+      component: () => import('@/modules/team/pages/TeamPage.vue')
+    },
+
+
+    // ================= UI =================
+
+
+
+
+    // ================= ERROR =================
+    {
+      path: '/404',
+      name: 'NotFound',
+      component: () => import('../modules/errors/pages/NotFound.vue'),
+      meta: { title: '404' },
+    },
+
+    // fallback
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/404',
     },
   ],
 })
 
-export default router
+// ================= AUTH GUARD =================
+router.beforeEach((to) => {
+  const token = localStorage.getItem('access')
+  const isAuthenticated = !!token
 
-router.beforeEach((to, from, next) => {
-  document.title = `Poura`
-  next()
+  document.title = to.meta.title
+    ? `${to.meta.title} | Poura`
+    : 'Poura'
+
+  // not logged in → block protected pages
+  if (to.meta.requiresAuth && !isAuthenticated) {
+    return { name: 'Signin' }
+  }
+
+  // logged in → block auth pages
+  if (isAuthenticated && (to.name === 'Signin' || to.name === 'Signup')) {
+    return { name: 'Dashboard' }
+  }
+
+  return true
 })
+
+export default router
