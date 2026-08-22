@@ -1,30 +1,17 @@
 <template>
-  <div class="min-h-screen xl:flex">
+  <div class="min-h-screen bg-slate-50 dark:bg-zinc-950 flex transition-colors duration-200">
     <app-sidebar />
     <Backdrop />
-    <div
-      class="flex-1 transition-all duration-300 ease-in-out"
-      :class="[isExpanded || isHovered ? 'lg:ml-[290px]' : 'lg:ml-[90px]']"
-    >
+    <div class="flex-1 flex flex-col min-w-0 min-h-screen">
       <app-header />
-      <div class="p-4 mx-auto max-w-(--breakpoint-2xl) md:p-6">
+      <main class="flex-1 p-6 lg:p-8">
         <slot></slot>
-      </div>
+      </main>
       <!-- Footer -->
-      <footer class="p-4 mx-auto max-w-(--breakpoint-2xl) md:p-6 pt-0">
-        <p class="text-sm text-center text-gray-500 dark:text-gray-400">
+      <footer class="p-6 pt-0 text-center">
+        <p class="text-sm text-gray-400">
           Designed and Developed by 
-          <a 
-            href="" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="text-brand-500 hover:text-brand-600 transition-colors duration-200 font-medium"
-          >
-            Poura
-          </a>
-
-      
-          .
+          <span class="text-brand-500 font-medium">Poura</span>
         </p>
       </footer>
     </div>
@@ -32,9 +19,8 @@
 </template>
 
 <script setup lang="ts">
-import { useSidebar } from '@/composables/useSidebar'
 import AppHeader from './AppHeader.vue'
 import AppSidebar from './AppSidebar.vue'
 import Backdrop from './Backdrop.vue'
-const { isExpanded, isHovered } = useSidebar()
 </script>
+

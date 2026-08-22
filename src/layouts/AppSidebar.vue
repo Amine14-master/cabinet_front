@@ -1,302 +1,151 @@
 <template>
-  <aside
-    :class="[
-      'fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white dark:bg-gray-900 dark:border-gray-800 text-gray-900 h-screen transition-all duration-300 ease-in-out z-99999 border-r border-gray-200',
-      {
-        'lg:w-[290px]': isExpanded || isMobileOpen || isHovered,
-        'lg:w-[90px]': !isExpanded && !isHovered,
-        'translate-x-0 w-[290px]': isMobileOpen,
-        '-translate-x-full': !isMobileOpen,
-        'lg:translate-x-0': true,
-      },
-    ]"
-    @mouseenter="!isExpanded && (isHovered = true)"
-    @mouseleave="isHovered = false"
-  >
-    <!-- Logo Section -->
-    <div
-      :class="[
-        'py-8 flex',
-        !isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start',
-      ]"
-    >
-      <router-link to="/">
-        <img
-          v-if="isExpanded || isHovered || isMobileOpen"
-          class="dark:hidden"
-          src="/images/logo/logo.svg"
-          alt="Logo"
-          width="150"
-          height="40"
-        />
-        <img
-          v-if="isExpanded || isHovered || isMobileOpen"
-          class="hidden dark:block"
-          src="/images/logo/logo-dark.svg"
-          alt="Logo"
-          width="150"
-          height="40"
-        />
-        <img
-          v-else
-          src="/images/logo/logo-icon.svg"
-          alt="Logo"
-          width="32"
-          height="32"
-        />
+  <aside class="flex h-screen w-64 flex-col bg-white border-r border-slate-200/80 shrink-0 sticky top-0 transition-all z-30">
+    <!-- Header -->
+    <div class="flex h-20 items-center px-6 shrink-0 mb-4 pt-4">
+      <router-link to="/dashboard" class="flex items-center gap-3 w-full">
+        <div class="w-10 h-10 bg-gradient-to-br from-brand-400 to-brand-600 rounded-2xl flex items-center justify-center shadow-lg shadow-brand-500/20">
+          <svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4" /></svg>
+        </div>
+        <div>
+          <h1 class="text-xl font-bold tracking-tight text-gray-900 leading-none font-figtree">Poura</h1>
+          <p class="text-[10px] text-brand-500 font-bold tracking-wider uppercase mt-1">Espace Médecin</p>
+        </div>
       </router-link>
     </div>
 
-    <!-- Navigation Section -->
-    <div class="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
-      <nav class="mb-6">
-        <div class="flex flex-col gap-4">
-          <div v-for="(menuGroup, groupIndex) in menuGroups" :key="groupIndex">
-            <h2
+    <!-- Navigation -->
+    <div class="flex-1 overflow-y-auto custom-scrollbar p-4 space-y-6">
+      <div v-for="group in filteredMenuGroups" :key="group.title">
+        <h3 class="px-4 text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">{{ group.title }}</h3>
+        <nav class="space-y-1">
+          <router-link
+            v-for="item in group.items"
+            :key="item.name"
+            :to="item.path"
+            v-slot="{ isActive }"
+          >
+            <div
               :class="[
-                'mb-4 text-xs uppercase flex leading-[20px] text-gray-400 font-semibold',
-                !isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start',
+                'flex items-center gap-3 px-4 py-3 rounded-2xl transition-all duration-300 group relative',
+                isActive
+                  ? 'bg-brand-50 text-brand-700 font-bold shadow-[inset_0_2px_4px_rgba(8,145,178,0.05)]'
+                  : 'text-gray-500 hover:bg-gray-50/80 hover:text-gray-900 font-medium'
               ]"
             >
-              <template v-if="isExpanded || isHovered || isMobileOpen">
-                {{ menuGroup.title }}
-              </template>
-              <HorizontalDots v-else />
-            </h2>
+              <!-- Active Indicator -->
+              <div
+                v-if="isActive"
+                class="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-6 bg-brand-600 rounded-r-full"
+              ></div>
+              <component
+                :is="item.icon"
+                :class="[
+                  'h-5 w-5 transition-transform duration-300',
+                  isActive ? 'scale-110 text-brand-600' : 'group-hover:scale-110 group-hover:text-brand-500'
+                ]"
+              />
+              <span class="text-sm tracking-wide">{{ item.name }}</span>
+            </div>
+          </router-link>
+        </nav>
+      </div>
+    </div>
 
-            <ul class="flex flex-col gap-4">
-              <li v-for="(item, index) in menuGroup.items" :key="item.name">
-                <!-- Toggleable Menu Item (with Subitems) -->
-                <button
-                  v-if="item.subItems"
-                  @click="toggleSubmenu(groupIndex, index)"
-                  :class="[
-                    'menu-item group w-full',
-                    {
-                      'menu-item-active': isSubmenuOpen(groupIndex, index),
-                      'menu-item-inactive': !isSubmenuOpen(groupIndex, index),
-                    },
-                    !isExpanded && !isHovered ? 'lg:justify-center' : 'lg:justify-start',
-                  ]"
-                >
-                  <span
-                    :class="[
-                      isSubmenuOpen(groupIndex, index)
-                        ? 'menu-item-icon-active'
-                        : 'menu-item-icon-inactive',
-                    ]"
-                  >
-                    <component :is="item.icon" />
-                  </span>
-                  <span
-                    v-if="isExpanded || isHovered || isMobileOpen"
-                    class="menu-item-text"
-                    >{{ item.name }}</span
-                  >
-                  <ChevronDownIcon
-                    v-if="isExpanded || isHovered || isMobileOpen"
-                    :class="[
-                      'ml-auto w-5 h-5 transition-transform duration-200',
-                      { 'rotate-180 text-brand-500': isSubmenuOpen(groupIndex, index) },
-                    ]"
-                  />
-                </button>
-
-                <!-- Direct Link Menu Item -->
-                <router-link
-                  v-else-if="item.path"
-                  :to="item.path"
-                  :class="[
-                    'menu-item group',
-                    {
-                      'menu-item-active': isActive(item.path),
-                      'menu-item-inactive': !isActive(item.path),
-                    },
-                    !isExpanded && !isHovered ? 'lg:justify-center' : '',
-                  ]"
-                >
-                  <span
-                    :class="[
-                      isActive(item.path) ? 'menu-item-icon-active' : 'menu-item-icon-inactive',
-                    ]"
-                  >
-                    <component :is="item.icon" />
-                  </span>
-                  <span
-                    v-if="isExpanded || isHovered || isMobileOpen"
-                    class="menu-item-text"
-                    >{{ item.name }}</span
-                  >
-                </router-link>
-
-                <!-- Submenu Transition -->
-                <transition
-                  @enter="startTransition"
-                  @after-enter="endTransition"
-                  @before-leave="startTransition"
-                  @after-leave="endTransition"
-                >
-                  <div
-                    v-show="
-                      isSubmenuOpen(groupIndex, index) &&
-                      (isExpanded || isHovered || isMobileOpen)
-                    "
-                    class="overflow-hidden transition-all duration-300"
-                  >
-                    <ul class="mt-2 space-y-1 ml-9">
-                      <li v-for="subItem in item.subItems" :key="subItem.name">
-                        <router-link
-                          :to="subItem.path"
-                          :class="[
-                            'menu-dropdown-item',
-                            {
-                              'menu-dropdown-item-active': isActive(subItem.path),
-                              'menu-dropdown-item-inactive': !isActive(subItem.path),
-                            },
-                          ]"
-                        >
-                          {{ subItem.name }}
-                        </router-link>
-                      </li>
-                    </ul>
-                  </div>
-                </transition>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <SidebarWidget v-if="isExpanded || isHovered || isMobileOpen" />
+    <!-- Footer Logout -->
+    <div class="p-6 pt-4">
+      <button
+        @click="handleLogout"
+        class="flex items-center gap-3 w-full px-4 py-3 rounded-2xl text-gray-500 hover:text-red-600 hover:bg-red-50 font-medium transition-all duration-300 border border-transparent hover:border-red-100"
+      >
+        <svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+        </svg>
+        <span class="text-sm">Déconnexion</span>
+      </button>
     </div>
   </aside>
 </template>
 
 <script setup>
-import { computed } from "vue"
-import { useRoute } from "vue-router"
-import { useSidebar } from "@/composables/useSidebar"
-
+import { computed } from 'vue'
+import { useRouter } from "vue-router"
 import {
-  LayoutDashboardIcon,
-  Calendar2Line,
-  ListIcon,
-  DocsIcon,
-  ChevronDownIcon,
-  HorizontalDots,
+  HomeIcon,
+  CalendarIcon,
   UserGroupIcon,
-  BoxIcon,
-} from "../icons"
+  DocumentTextIcon as DocsIcon,
+  DocumentIcon,
+  ViewColumnsIcon as GridIcon,
+  CubeIcon as BoxIcon,
+  ClockIcon,
+  UserCircleIcon
+} from "@heroicons/vue/24/outline"
 
-import SidebarWidget from "./SidebarWidget.vue"
+const router = useRouter()
 
-const route = useRoute()
-const { isExpanded, isMobileOpen, isHovered, openSubmenu } = useSidebar()
-
-/**
- * Sidebar optimisé pour médecin
- */
 const menuGroups = [
   {
-    title: "Accueil",
+    title: "Principal",
     items: [
-      {
-        icon: LayoutDashboardIcon,
-        name: "Tableau de bord",
-        path: "/",
-      },
-    ],
+      { icon: HomeIcon, name: "Tableau de bord", path: "/dashboard" },
+      { icon: CalendarIcon, name: "Rendez-vous", path: "/appointments" },
+      { icon: GridIcon, name: "File d'Attente", path: "/queue/today" },
+      { icon: UserGroupIcon, name: "Patients", path: "/patients" },
+    ]
   },
   {
-    title: "Rendez-vous",
+    title: "Clinique",
     items: [
-      {
-        icon: Calendar2Line,
-        name: "Jours de travail",
-        path: "/working-days",
-      },
-      {
-        icon: ListIcon,
-        name: "Rendez-vous",
-        path: "/appointments",
-      },
+      { icon: DocsIcon, name: "Consultations", path: "/consultations" },
+      { icon: DocumentIcon, name: "Ordonnances", path: "/ordonnances" },
+      { icon: BoxIcon, name: "Médicaments", path: "/medicaments" },
     ],
+    roles: ['doctor']
   },
   {
-    title: "Patients",
+    title: "Paramètres",
     items: [
-      {
-        icon: UserGroupIcon,
-        name: "Patients",
-        path: "/patients",
-      },
-      {
-        icon: DocsIcon,
-        name: "Consultations",
-        path: "/consultations",
-      },
-      {
-        icon: DocsIcon,
-        name: "Ordonnances",
-        path: "/ordonnances",
-      },
+      { icon: ClockIcon, name: "Jours de travail", path: "/working-days" },
+      { icon: UserCircleIcon, name: "Profil", path: "/profile" },
     ],
-  },
-  {
-    title: "Médical",
-    items: [
-      {
-        icon: BoxIcon,
-        name: "Médicaments",
-        path: "/medicaments",
-      },
-    ],
-  },
+    roles: ['doctor']
+  }
 ]
 
-// التحقق من الرابط النشط
-const isActive = (path) => route.path === path
+const role = localStorage.getItem('role') || 'doctor'
 
-// فتح وغلق الـ Submenu عند الضغط
-const toggleSubmenu = (groupIndex, itemIndex) => {
-  const key = `${groupIndex}-${itemIndex}`
-  openSubmenu.value = openSubmenu.value === key ? null : key
-}
+const filteredMenuGroups = computed(() => {
+  return menuGroups.filter(group => {
+    if (group.roles && !group.roles.includes(role)) return false;
+    return true;
+  }).map(group => {
+    let items = group.items;
+    if (['secretary', 'assistant'].includes(role)) {
+      items = items.filter(item => !['Consultations', 'Ordonnances', 'Médicaments', 'Jours de travail'].includes(item.name));
+    }
+    return { ...group, items };
+  });
+})
 
-// التحقق إذا كان الرابط الفرعي لعنصر معين نشط حالياً (إصلاح البق القديم)
-const isItemRouteActive = (item) => {
-  if (!item.subItems) return false
-  return item.subItems.some((subItem) => isActive(subItem.path))
-}
-
-// دالة ذكية للتحقق إن كان الـ Submenu مفتوحاً لهذا العنصر بالذات
-const isSubmenuOpen = (groupIndex, itemIndex) => {
-  const key = `${groupIndex}-${itemIndex}`
-  const item = menuGroups[groupIndex].items[itemIndex]
-  
-  // يفتح إذا ضغط عليه الطبيب، أو إذا كان الرابط الداخلي تاعو هو النشط حالياً
-  return openSubmenu.value === key || isItemRouteActive(item)
-}
-
-// انيميشن الترانزيشن (Smooth Expand/Collapse)
-const startTransition = (el) => {
-  el.style.height = "auto"
-  const height = el.scrollHeight
-  el.style.height = "0px"
-  el.offsetHeight // Force repaint
-  el.style.height = height + "px"
-}
-
-const endTransition = (el) => {
-  el.style.height = ""
+const handleLogout = () => {
+  localStorage.removeItem('access')
+  localStorage.removeItem('refresh')
+  router.push('/signin')
 }
 </script>
 
 <style scoped>
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
 }
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #E8F1F6;
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #A5F3FC;
 }
 </style>

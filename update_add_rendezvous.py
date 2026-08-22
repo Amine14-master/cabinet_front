@@ -1,9 +1,15 @@
-<template>
-  <div class="w-full relative pb-20">
-    <form @submit.prevent="handleSubmit" class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+import os
+
+FILE_PATH = "src/modules/appointments/components/AddRendezVous.vue"
+
+NEW_CONTENT = """<template>
+  <div class="space-y-4">
+    <div class="overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
+      <div class="max-w-full overflow-x-auto custom-scrollbar">
+        <form @submit.prevent="handleSubmit" class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 p-4 lg:p-6">
           
           <!-- Column 1: Patient Selection & Period -->
-          <div class="lg:col-span-4 flex flex-col space-y-5">
+          <div class="lg:col-span-4 flex flex-col space-y-6">
             
             <!-- Patient Search Card -->
             <div class="bg-white dark:bg-zinc-950 rounded-3xl border border-slate-200 dark:border-zinc-800 p-6 shadow-sm">
@@ -28,7 +34,7 @@
                     v-model="searchQuery" 
                     @input="handleSearch"
                     type="text"
-                    placeholder="Rechercher par nom, t√©l√©phone..."
+                    placeholder="Rechercher par nom, tÈlÈphone..."
                     class="w-full pl-12 pr-4 py-3 rounded-2xl border border-slate-200 dark:border-zinc-700 dark:bg-zinc-900 focus:ring-2 focus:ring-brand-500 outline-none dark:text-white shadow-sm"
                   />
                 </div>
@@ -58,7 +64,7 @@
                       </div>
                       <p class="text-sm text-gray-500 mt-1 flex items-center gap-1.5">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                        {{ patient.phone || 'Pas de t√©l√©phone' }}
+                        {{ patient.phone || 'Pas de tÈlÈphone' }}
                       </p>
                     </div>
                   </div>
@@ -73,10 +79,10 @@
                   </div>
                   <div class="space-y-3">
                     <div class="grid grid-cols-2 gap-3">
-                      <input v-model="form.patient_first_name" type="text" placeholder="Pr√©nom *" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-700 dark:bg-zinc-900 focus:ring-2 focus:ring-brand-500 outline-none shadow-sm text-sm" />
+                      <input v-model="form.patient_first_name" type="text" placeholder="PrÈnom *" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-700 dark:bg-zinc-900 focus:ring-2 focus:ring-brand-500 outline-none shadow-sm text-sm" />
                       <input v-model="form.patient_last_name" type="text" placeholder="Nom *" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-700 dark:bg-zinc-900 focus:ring-2 focus:ring-brand-500 outline-none shadow-sm text-sm" />
                     </div>
-                    <input v-model="form.patient_phone" type="tel" placeholder="Num√©ro de t√©l√©phone *" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-700 dark:bg-zinc-900 focus:ring-2 focus:ring-brand-500 outline-none shadow-sm text-sm" />
+                    <input v-model="form.patient_phone" type="tel" placeholder="NumÈro de tÈlÈphone *" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 dark:border-zinc-700 dark:bg-zinc-900 focus:ring-2 focus:ring-brand-500 outline-none shadow-sm text-sm" />
                   </div>
                 </div>
               </div>
@@ -86,7 +92,7 @@
                 <div class="bg-brand-50 border border-brand-100 dark:border-brand-900/30 dark:bg-brand-900/10 rounded-2xl p-5 shadow-sm">
                   <div class="flex items-start justify-between">
                     <div>
-                      <p class="text-[10px] font-bold text-brand-600 uppercase tracking-wider mb-2">Patient s√©lectionn√©</p>
+                      <p class="text-[10px] font-bold text-brand-600 uppercase tracking-wider mb-2">Patient sÈlectionnÈ</p>
                       <span class="inline-block text-xs font-mono bg-white dark:bg-zinc-900 border border-brand-200 dark:border-brand-800 px-2 py-1 rounded-lg text-brand-700 dark:text-brand-400 font-bold mb-2">
                         {{ selectedPatient.code }}
                       </span>
@@ -114,14 +120,14 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                   </svg>
                 </div>
-                <h2 class="text-xl font-bold dark:text-white">P√©riode</h2>
+                <h2 class="text-xl font-bold dark:text-white">PÈriode</h2>
               </div>
               
               <div class="grid grid-cols-2 gap-3">
                 <label class="cursor-pointer relative">
                   <input type="radio" v-model="form.period" value="morning" @change="onPeriodChange" class="peer sr-only" />
                   <div class="p-4 rounded-2xl border-2 border-slate-100 dark:border-zinc-800 hover:border-brand-200 peer-checked:border-brand-600 peer-checked:bg-brand-50 dark:peer-checked:bg-brand-900/20 transition-all text-center">
-                    <span class="block text-2xl mb-1">üåÖ</span>
+                    <span class="block text-2xl mb-1">??</span>
                     <span class="block text-sm font-bold text-gray-900 dark:text-white">Matin</span>
                     <span class="block text-xs text-gray-500 mt-0.5">08:00 - 12:00</span>
                   </div>
@@ -129,8 +135,8 @@
                 <label class="cursor-pointer relative">
                   <input type="radio" v-model="form.period" value="afternoon" @change="onPeriodChange" class="peer sr-only" />
                   <div class="p-4 rounded-2xl border-2 border-slate-100 dark:border-zinc-800 hover:border-brand-200 peer-checked:border-brand-600 peer-checked:bg-brand-50 dark:peer-checked:bg-brand-900/20 transition-all text-center">
-                    <span class="block text-2xl mb-1">‚òÄÔ∏è</span>
-                    <span class="block text-sm font-bold text-gray-900 dark:text-white">Apr√®s-midi</span>
+                    <span class="block text-2xl mb-1">??</span>
+                    <span class="block text-sm font-bold text-gray-900 dark:text-white">AprËs-midi</span>
                     <span class="block text-xs text-gray-500 mt-0.5">13:00 - 17:00</span>
                   </div>
                 </label>
@@ -141,10 +147,9 @@
 
           <!-- Column 2: Interactive Calendar -->
           <div class="lg:col-span-8 flex flex-col">
-            <!-- Constrain the calendar card itself so it doesn't stretch infinitely -->
-            <div class="bg-white dark:bg-zinc-950 rounded-3xl border border-slate-200 dark:border-zinc-800 p-6 shadow-sm w-full flex flex-col relative overflow-hidden">
+            <div class="bg-white dark:bg-zinc-950 rounded-3xl border border-slate-200 dark:border-zinc-800 p-6 xl:p-8 shadow-sm flex-1 flex flex-col relative overflow-hidden">
               
-              <div class="flex items-center justify-between mb-5">
+              <div class="flex items-center justify-between mb-8">
                 <div class="flex items-center gap-3">
                   <div class="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-500/10 flex items-center justify-center text-indigo-600">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -153,24 +158,24 @@
                   </div>
                   <div>
                     <h2 class="text-xl font-bold dark:text-white">Calendrier</h2>
-                    <p class="text-sm text-gray-500">S√©lectionnez une date avec des disponibilit√©s</p>
+                    <p class="text-sm text-gray-500">SÈlectionnez une date avec des disponibilitÈs</p>
                   </div>
                 </div>
 
                 <!-- Month Navigation -->
-                <div class="flex items-center gap-2">
-                  <button type="button" @click="prevMonth" class="p-2 text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded-full transition-all">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                <div class="flex items-center gap-3 bg-slate-50 dark:bg-zinc-900 rounded-xl p-1.5 border border-slate-100 dark:border-zinc-800 shadow-sm">
+                  <button type="button" @click="prevMonth" class="p-2 text-slate-500 hover:text-brand-600 hover:bg-white dark:hover:bg-zinc-800 rounded-lg transition-all shadow-sm bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
                   </button>
-                  <span class="font-bold text-slate-800 dark:text-white min-w-[120px] text-center capitalize text-sm">{{ monthName }}</span>
-                  <button type="button" @click="nextMonth" class="p-2 text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded-full transition-all">
+                  <span class="font-bold text-slate-800 dark:text-white min-w-[120px] text-center capitalize">{{ monthName }}</span>
+                  <button type="button" @click="nextMonth" class="p-2 text-slate-500 hover:text-brand-600 hover:bg-white dark:hover:bg-zinc-800 rounded-lg transition-all shadow-sm bg-white dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
                   </button>
                 </div>
               </div>
 
               <!-- Calendar Grid -->
-              <div class="flex-1 w-full mt-2">
+              <div class="flex-1">
                 <!-- Days of Week -->
                 <div class="grid grid-cols-7 gap-2 mb-2">
                   <div v-for="day in weekDays" :key="day" class="text-center text-xs font-bold text-slate-400 uppercase tracking-wider py-2">
@@ -179,43 +184,47 @@
                 </div>
                 
                 <!-- Dates Grid -->
-                <div class="grid grid-cols-7 gap-1.5 relative min-h-[250px]">
+                <div class="grid grid-cols-7 gap-2 relative min-h-[320px]">
                   <!-- Loading Overlay -->
-                  <div v-if="loadingDates" class="absolute inset-0 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl">
-                    <div class="animate-spin h-6 w-6 border-4 border-brand-600 border-t-transparent rounded-full"></div>
+                  <div v-if="loadingDates" class="absolute inset-0 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-sm flex items-center justify-center z-10 rounded-2xl">
+                    <div class="animate-spin h-8 w-8 border-4 border-brand-600 border-t-transparent rounded-full"></div>
                   </div>
 
                   <template v-for="(day, index) in calendarDays" :key="index">
                     <!-- Empty Cell -->
-                    <div v-if="day.empty" class="h-12 w-full bg-transparent"></div>
+                    <div v-if="day.empty" class="aspect-square bg-transparent"></div>
                     
                     <!-- Date Cell -->
-                    <button v-else 
-                      type="button"
-                      :disabled="!day.isAvailable || day.isPast"
+                    <div v-else 
                       @click="day.isAvailable ? selectDate(day.fullDate) : null"
                       :class="[
-                        'relative flex flex-col items-center justify-center rounded-xl border transition-all h-12 w-full max-w-[3rem] mx-auto outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-1',
-                        day.isPast || !day.isAvailable ? 'bg-slate-50/50 dark:bg-zinc-900/30 border-slate-100 dark:border-zinc-800/50 text-slate-300 dark:text-zinc-600 cursor-not-allowed' : 
-                        form.appointment_date === day.fullDate 
-                          ? 'bg-brand-50 dark:bg-brand-900/30 border-brand-600 text-brand-700 dark:text-brand-300 shadow-md ring-1 ring-brand-600 z-10 scale-[1.02]' 
-                          : 'bg-white dark:bg-zinc-950 border-slate-200 dark:border-zinc-800 text-slate-700 dark:text-slate-300 hover:border-brand-400 hover:shadow-sm cursor-pointer'
+                        'relative flex flex-col items-center justify-center rounded-2xl border-2 transition-all aspect-square p-1',
+                        day.isPast ? 'opacity-30 cursor-not-allowed bg-slate-50 dark:bg-zinc-900 border-transparent' : 
+                        day.isAvailable 
+                          ? form.appointment_date === day.fullDate 
+                            ? 'border-brand-600 bg-brand-50 dark:bg-brand-900/20 cursor-pointer shadow-md transform scale-[1.02]' 
+                            : 'border-transparent bg-slate-50 dark:bg-zinc-900 hover:border-brand-300 hover:shadow-sm cursor-pointer'
+                          : 'border-transparent bg-slate-50 dark:bg-zinc-900 cursor-not-allowed opacity-40'
                       ]"
                     >
                       <span :class="[
-                        'text-sm font-semibold',
-                        form.appointment_date === day.fullDate ? 'text-brand-700 dark:text-brand-300 font-bold' : ''
+                        'text-lg font-bold',
+                        form.appointment_date === day.fullDate ? 'text-brand-700 dark:text-brand-400' : 'text-gray-700 dark:text-gray-300'
                       ]">{{ day.date }}</span>
                       
-                      <!-- Slots Text Indicator -->
-                      <span v-if="day.isAvailable" 
-                            :class="[
-                              'text-[10px] mt-0.5 leading-none',
-                              form.appointment_date === day.fullDate ? 'text-brand-600 dark:text-brand-400 font-bold' : 'text-brand-500 dark:text-brand-500 font-medium'
-                            ]">
-                        {{ day.availableSlots }} pl.
-                      </span>
-                    </button>
+                      <!-- Slots Indicator -->
+                      <div v-if="day.isAvailable" class="mt-1.5 flex flex-col items-center gap-1 w-full px-2">
+                        <div class="w-full bg-slate-200 dark:bg-zinc-700 rounded-full h-1 overflow-hidden">
+                          <div class="bg-brand-600 h-1 rounded-full transition-all" :style="{ width: `${(day.availableSlots / day.totalSlots) * 100}%` }"></div>
+                        </div>
+                        <span class="text-[10px] font-bold text-brand-600 dark:text-brand-400 leading-none">{{ day.availableSlots }} pl.</span>
+                      </div>
+                      
+                      <!-- Selected Checkmark -->
+                      <div v-if="form.appointment_date === day.fullDate" class="absolute -top-2 -right-2 bg-brand-600 text-white rounded-full p-1 shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                      </div>
+                    </div>
                   </template>
                 </div>
               </div>
@@ -235,7 +244,7 @@
               <!-- Footer Actions -->
               <div class="flex flex-col-reverse sm:flex-row items-center justify-end gap-3 mt-8 pt-6 border-t border-slate-100 dark:border-zinc-800">
                 <button type="button" @click="resetForm" class="w-full sm:w-auto px-6 py-2.5 rounded-xl text-slate-500 font-bold hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all text-sm">
-                  R√©initialiser
+                  RÈinitialiser
                 </button>
                 <button type="button" @click="$router.back()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl text-slate-500 font-bold hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all text-sm">
                   Annuler
@@ -252,6 +261,8 @@
             </div>
           </div>
         </form>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -459,7 +470,7 @@ const handleSubmit = async () => {
     await createDoctorAppointment(payload)
     router.push("/appointments")
   } catch (err) {
-    errorMessage.value = err.response?.data?.detail || "Erreur lors de la cr√©ation du rendez-vous."
+    errorMessage.value = err.response?.data?.detail || "Erreur lors de la crÈation du rendez-vous."
   } finally {
     loading.value = false
   }
@@ -500,3 +511,7 @@ const handleSubmit = async () => {
   background: #3f3f46;
 }
 </style>
+"""
+
+with open(FILE_PATH, "w", encoding="utf-8") as f:
+    f.write(NEW_CONTENT)

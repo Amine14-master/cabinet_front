@@ -17,6 +17,6 @@ import PageBreadcrumb from "@/layouts/common/PageBreadcrumb.vue";
 import AdminLayout from "@/layouts/AdminLayout.vue";
 import ComponentCard from "@/layouts/common/ComponentCard.vue";
 import AddRendezVous from "../components/AddRendezVous.vue";
-const currentPageTitle = ref("Ajouter une nouvelle  Rendez vous ");
+const currentPageTitle = ref("Ajouter un nouveau rendez-vous");
 
 </script>

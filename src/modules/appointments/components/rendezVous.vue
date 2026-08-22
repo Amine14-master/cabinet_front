@@ -21,7 +21,7 @@
       <div class="rounded-2xl border border-gray-100 bg-white p-5 dark:border-gray-800/60 dark:bg-zinc-900/40 backdrop-blur-sm">
         <div class="flex items-center justify-between">
           <p class="text-xs font-medium tracking-wider text-gray-400 uppercase">Programmés</p>
-          <div class="h-8 w-8 rounded-lg bg-blue-50/60 dark:bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400">
+          <div class="h-8 w-8 rounded-lg bg-teal-50/60 dark:bg-teal-500/10 flex items-center justify-center text-teal-600 dark:text-teal-400">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
@@ -69,14 +69,14 @@
           v-model="searchQuery"
           type="text"
           placeholder="Rechercher par nom, téléphone, code, date..."
-          class="w-full rounded-lg border border-gray-200/80 bg-white py-2 pl-10 pr-4 text-sm text-gray-900 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 dark:border-gray-800 dark:bg-zinc-900 dark:text-white transition-all placeholder:text-gray-400"
+          class="w-full rounded-lg border border-gray-200/80 bg-white py-2 pl-10 pr-4 text-sm text-gray-900 outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500/20 dark:border-gray-800 dark:bg-zinc-900 dark:text-white transition-all placeholder:text-gray-400"
         />
       </div>
 
       <div class="flex items-center gap-2">
         <select 
           v-model="statusFilter"
-          class="rounded-lg border border-gray-200/80 bg-white px-3 py-2 text-sm font-medium text-gray-600 outline-none focus:border-blue-500 dark:border-gray-800 dark:bg-zinc-900 dark:text-gray-300 cursor-pointer transition-all appearance-none pr-8 relative bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2371717a%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:0.65rem_auto] bg-[right_0.75rem_center] bg-no-repeat"
+          class="rounded-lg border border-gray-200/80 bg-white px-3 py-2 text-sm font-medium text-gray-600 outline-none focus:border-teal-500 dark:border-gray-800 dark:bg-zinc-900 dark:text-gray-300 cursor-pointer transition-all appearance-none pr-8 relative bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2371717a%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:0.65rem_auto] bg-[right_0.75rem_center] bg-no-repeat"
         >
           <option value="All">Tous les statuts</option>
           <option value="scheduled">Programmés</option>
@@ -114,7 +114,7 @@
             <tr v-if="loading">
               <td colspan="5" class="px-6 py-12 text-center">
                 <div class="flex flex-col items-center justify-center gap-3">
-                  <div class="h-6 w-6 animate-spin rounded-full border-2 border-solid border-blue-600 border-r-transparent"></div>
+                  <div class="h-6 w-6 animate-spin rounded-full border-2 border-solid border-teal-600 border-r-transparent"></div>
                   <p class="text-xs text-gray-400">Chargement des données...</p>
                 </div>
               </td>
@@ -147,7 +147,7 @@
              <div :class="[
   'w-10 h-10 rounded-lg flex items-center justify-center shadow-inner transition-transform group-hover:scale-[1.02]',
   isMale(app.gender) 
-    ? 'bg-blue-100 text-blue-600 dark:bg-blue-500/20' 
+    ? 'bg-teal-100 text-teal-600 dark:bg-teal-500/20' 
     : 'bg-pink-100 text-pink-600 dark:bg-pink-500/20'
 ]">
   <!-- Male Icon -->
@@ -219,9 +219,9 @@
                   </button>
                   
                   <button 
-                    v-if="app.status === 'scheduled'"
+                    v-if="app.status === 'scheduled' && !['secretary', 'assistant'].includes(role)"
                     @click="startConsultation(app)"
-                    class="p-1.5 rounded-md text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-500/10 transition-colors active:scale-95"
+                    class="p-1.5 rounded-md text-gray-400 hover:text-teal-600 hover:bg-teal-50 dark:hover:bg-teal-500/10 transition-colors active:scale-95"
                     title="Consulter"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -291,7 +291,7 @@
   <div :class="[
     'w-16 h-16 rounded-xl flex items-center justify-center text-xl shadow-inner mb-3 border',
     isMale(selectedAppointment.gender) 
-      ? 'bg-blue-100 text-blue-600 border-blue-200 dark:bg-blue-500/20 dark:text-blue-400 dark:border-blue-500/10' 
+      ? 'bg-teal-100 text-teal-600 border-teal-200 dark:bg-teal-500/20 dark:text-teal-400 dark:border-teal-500/10' 
       : 'bg-pink-100 text-pink-600 border-pink-200 dark:bg-pink-500/20 dark:text-pink-400 dark:border-pink-500/10'
   ]">
     <svg v-if="isMale(selectedAppointment.gender)" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -304,6 +304,12 @@
   </div>
   <h3 class="text-base font-medium text-gray-900 dark:text-white">{{ selectedAppointment.patientName || 'Patient inconnu' }}</h3>
   <p class="text-xs text-gray-400 font-mono mt-0.5">{{ selectedAppointment.patientPhone || '—' }}</p>
+  <p v-if="selectedAppointment.email" class="text-xs text-gray-400 font-mono mt-0.5">{{ selectedAppointment.email }}</p>
+  
+  <div class="flex gap-2 mt-3 flex-wrap justify-center">
+    <span v-if="selectedAppointment.bloodGroup" class="text-[10px] px-2 py-0.5 bg-red-50 text-red-600 border border-red-100 rounded-md font-medium">Sang: {{ selectedAppointment.bloodGroup }}</span>
+    <span v-if="selectedAppointment.dateOfBirth" class="text-[10px] px-2 py-0.5 bg-teal-50 text-teal-600 border border-teal-100 rounded-md font-medium">Né(e) le: {{ selectedAppointment.dateOfBirth }}</span>
+  </div>
 </div>
 
             <!-- Metadata Group -->
@@ -330,7 +336,7 @@
             <button 
               v-if="selectedAppointment.status === 'scheduled'"
               @click="startConsultation(selectedAppointment)"  
-              class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-lg text-sm transition-all active:scale-[0.98]"
+              class="w-full bg-teal-600 hover:bg-teal-700 text-white font-medium py-2.5 rounded-lg text-sm transition-all active:scale-[0.98]"
             >
               Commencer la consultation
             </button>
@@ -353,6 +359,7 @@ import { useRouter } from "vue-router"
 import { getDoctorAppointments, updateAppointmentStatus } from "@/api/appointmentService"
 
 const router = useRouter()
+const role = localStorage.getItem('role') || 'doctor'
 const searchQuery = ref("")
 const statusFilter = ref("All")
 const selectedAppointment = ref(null)
@@ -377,6 +384,9 @@ const fetchAppointments = async () => {
         patientName: item.patient_name || item.patientName || item.patient?.full_name || "Anonyme",
         patientPhone: item.patient_phone || item.patientPhone || "N/A",
         gender: patientGender,
+        email: item.patient_details?.email || "",
+        bloodGroup: item.patient_details?.blood_group || "",
+        dateOfBirth: item.patient_details?.date_of_birth || "",
         date: item.appointment_date ? new Date(item.appointment_date).toLocaleDateString('fr-FR', { 
           weekday: 'long', 
           year: 'numeric', 
@@ -479,7 +489,7 @@ function statusClasses(status) {
     case 'completed': 
       return `bg-emerald-50/60 text-emerald-700 border-emerald-100/80 dark:bg-emerald-500/5 dark:text-emerald-400 dark:border-emerald-500/10 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23047857%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')]`;
     case 'scheduled': 
-      return `bg-blue-50/60 text-blue-700 border-blue-100/80 dark:bg-blue-500/5 dark:text-blue-400 dark:border-blue-500/10 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%20%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%231d4ed8%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')]`;
+      return `bg-teal-50/60 text-teal-700 border-teal-100/80 dark:bg-teal-500/5 dark:text-teal-400 dark:border-teal-500/10 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%20%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%231d4ed8%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')]`;
     case 'cancelled': 
       return `bg-rose-50/60 text-rose-700 border-rose-100/80 dark:bg-rose-500/5 dark:text-rose-400 dark:border-rose-500/10 bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23be123c%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')]`;
     default: 

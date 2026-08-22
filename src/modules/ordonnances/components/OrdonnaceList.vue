@@ -220,15 +220,17 @@
           </div>
           
           <div class="p-4 border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-950 flex gap-3">
-            <button 
-              @click="handleDownloadPDF(selectedItem.code)" 
+            <a 
+              v-if="selectedItem.pdf_file"
+              :href="getPdfUrl(selectedItem.pdf_file)" 
+              target="_blank"
               class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl transition-all active:scale-[0.98] shadow-sm text-xs flex items-center justify-center gap-2"
             >
               <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v2a2 2 0 002 2zm3-10V4a1 1 0 011-1h2a1 1 0 011 1v3m-3 7h.01" />
               </svg>
               Imprimer / Générer le PDF
-            </button>
+            </a>
             <button 
               @click="closeDetails" 
               class="px-5 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 font-bold py-2.5 rounded-xl transition-all active:scale-[0.98] text-xs"
@@ -244,7 +246,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue"
-import { getDoctorOrdonnances, getOrdonnanceDetail,downloadOrdonnancePDF  } from "@/api/ordonnaceService.ts"
+import { getDoctorOrdonnances, getOrdonnanceDetail } from "@/api/ordonnaceService.ts"
 
 const searchQuery = ref("")
 const combinedData = ref([])
@@ -297,18 +299,10 @@ const openDetails = async (code) => {
 const closeDetails = () => { selectedItem.value = null }
 
 
-const handleDownloadPDF = async (code) => {
-  try {
-    const blob = await downloadOrdonnancePDF(code)
-
-    const url = window.URL.createObjectURL(blob)
-
-    window.open(url, "_blank")
-
-    window.URL.revokeObjectURL(url)
-  } catch (e) {
-    console.error("Erreur téléchargement PDF", e)
-  }
+const getPdfUrl = (url) => {
+  if (!url) return "#";
+  if (url.startsWith("http")) return url;
+  return `http://127.0.0.1:8000${url}`;
 }
 const formatDate = (dateString) => {
   if (!dateString) return "---"

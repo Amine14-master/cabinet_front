@@ -94,6 +94,31 @@
             </div>
           </div>
 
+          <div class="mb-10">
+            <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-3 mb-6">
+              <span class="w-8 h-8 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-600">📁</span>
+              Dossier Médical (Antécédents)
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-purple-50/50 dark:bg-purple-900/10 p-6 rounded-3xl border border-purple-100 dark:border-purple-900/30">
+              <div class="space-y-2">
+                <label class="text-xs font-bold text-gray-400 uppercase ml-1">Allergies</label>
+                <textarea v-model="formData.allergies" rows="2" class="w-full px-4 py-3.5 rounded-2xl border border-gray-200 dark:border-gray-700 dark:bg-gray-900 focus:ring-2 focus:ring-purple-500 outline-none dark:text-white" placeholder="Pénicilline, arachides... (laisser vide si aucune)"></textarea>
+              </div>
+              <div class="space-y-2">
+                <label class="text-xs font-bold text-gray-400 uppercase ml-1">Maladies Chroniques</label>
+                <textarea v-model="formData.chronic_diseases" rows="2" class="w-full px-4 py-3.5 rounded-2xl border border-gray-200 dark:border-gray-700 dark:bg-gray-900 focus:ring-2 focus:ring-purple-500 outline-none dark:text-white" placeholder="Diabète, HTA, Asthme..."></textarea>
+              </div>
+              <div class="space-y-2">
+                <label class="text-xs font-bold text-gray-400 uppercase ml-1">Antécédents Chirurgicaux</label>
+                <textarea v-model="formData.surgical_history" rows="2" class="w-full px-4 py-3.5 rounded-2xl border border-gray-200 dark:border-gray-700 dark:bg-gray-900 focus:ring-2 focus:ring-purple-500 outline-none dark:text-white" placeholder="Opération de l'appendicite (2015)..."></textarea>
+              </div>
+              <div class="space-y-2">
+                <label class="text-xs font-bold text-gray-400 uppercase ml-1">Antécédents Familiaux</label>
+                <textarea v-model="formData.family_history" rows="2" class="w-full px-4 py-3.5 rounded-2xl border border-gray-200 dark:border-gray-700 dark:bg-gray-900 focus:ring-2 focus:ring-purple-500 outline-none dark:text-white" placeholder="Cancer, maladies génétiques..."></textarea>
+              </div>
+            </div>
+          </div>
+
           <!-- Footer Actions -->
           <div class="flex items-center justify-end gap-4 mt-4 px-8 pb-8">
             <button type="button" @click="$router.back()" class="px-8 py-3.5 rounded-2xl text-gray-500 font-bold hover:bg-gray-100 dark:hover:bg-gray-800 transition-all">
@@ -126,7 +151,11 @@ const formData = reactive({
   phone: '',
   gender: 'M',
   date_of_birth: '',
-  blood_group: 'A+'
+  blood_group: 'A+',
+  allergies: '',
+  chronic_diseases: '',
+  surgical_history: '',
+  family_history: ''
 });
 
 const handleFormSubmit = async () => {

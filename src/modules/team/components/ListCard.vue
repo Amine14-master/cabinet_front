@@ -155,8 +155,9 @@
 
           <input
             v-model="form.first_name"
-            class="w-full rounded-xl border px-4 py-3"
+            :class="['w-full rounded-xl border px-4 py-3', formErrors.first_name ? 'border-red-500 bg-red-50' : '']"
           />
+          <p v-if="formErrors.first_name" class="text-red-500 text-xs mt-1">{{ formErrors.first_name[0] }}</p>
         </div>
 
         <div>
@@ -166,26 +167,29 @@
 
           <input
             v-model="form.last_name"
-            class="w-full rounded-xl border px-4 py-3"
+            :class="['w-full rounded-xl border px-4 py-3', formErrors.last_name ? 'border-red-500 bg-red-50' : '']"
           />
+          <p v-if="formErrors.last_name" class="text-red-500 text-xs mt-1">{{ formErrors.last_name[0] }}</p>
         </div>
       <div>
-        <label>Email</label>
+        <label class="block text-sm mb-2">Email</label>
 
         <input
           v-model="form.email"
           type="email"
-          class="w-full rounded-xl border px-4 py-3"
+          :class="['w-full rounded-xl border px-4 py-3', formErrors.email ? 'border-red-500 bg-red-50' : '']"
         />
+        <p v-if="formErrors.email" class="text-red-500 text-xs mt-1">{{ formErrors.email[0] }}</p>
       </div>
 
       <div>
-        <label>Téléphone</label>
+        <label class="block text-sm mb-2">Téléphone</label>
 
         <input
           v-model="form.phone"
-          class="w-full rounded-xl border px-4 py-3"
+          :class="['w-full rounded-xl border px-4 py-3', formErrors.phone ? 'border-red-500 bg-red-50' : '']"
         />
+        <p v-if="formErrors.phone" class="text-red-500 text-xs mt-1">{{ formErrors.phone[0] }}</p>
       </div>
         <div>
           <label class="block text-sm mb-2">
@@ -425,6 +429,60 @@
     </div>
   </div>
 </Transition>
+
+<Modal v-if="showSuccessModal" @close="showSuccessModal = false">
+  <template #body>
+    <div class="relative w-full max-w-md rounded-3xl bg-white dark:bg-gray-900 shadow-2xl overflow-hidden mx-auto my-auto mt-20">
+      <!-- Header with Icon -->
+      <div class="bg-brand-500/10 dark:bg-brand-500/20 p-6 flex flex-col items-center justify-center border-b border-brand-100 dark:border-brand-900/30">
+        <div class="w-16 h-16 bg-brand-100 dark:bg-brand-500/30 rounded-full flex items-center justify-center mb-3 text-brand-600 dark:text-brand-400">
+          <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <h2 class="text-xl font-bold text-gray-900 dark:text-white">Compte Créé !</h2>
+        <p class="text-sm text-brand-600 dark:text-brand-400 font-medium mt-1">Le membre de l'équipe a été ajouté avec succès.</p>
+      </div>
+
+      <!-- Credentials Section -->
+      <div class="p-6 space-y-4">
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 border border-gray-100 dark:border-gray-700 relative group">
+          <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Email de connexion</p>
+          <p class="text-gray-900 dark:text-white font-medium select-all">{{ newStaffCredentials.email }}</p>
+        </div>
+        
+        <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 border border-gray-100 dark:border-gray-700 relative">
+          <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-1">Mot de passe temporaire</p>
+          <div class="flex items-center justify-between">
+            <p class="text-gray-900 dark:text-white font-mono text-xl font-bold select-all tracking-wider">{{ newStaffCredentials.password }}</p>
+            <button @click="copyPassword" class="p-2 text-gray-400 hover:text-brand-500 hover:bg-brand-50 dark:hover:bg-gray-700 rounded-lg transition-colors" title="Copier le mot de passe">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        
+        <div class="bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-xl p-3 flex gap-3 mt-4">
+          <svg class="w-6 h-6 text-amber-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <p class="text-xs text-amber-700 dark:text-amber-400 font-medium">
+            Ce mot de passe ne sera affiché qu'une seule fois. Veuillez le copier et le transmettre à votre collaborateur en toute sécurité.
+          </p>
+        </div>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="p-6 pt-2">
+        <button @click="showSuccessModal = false" class="w-full py-3 rounded-xl bg-brand-500 text-white font-semibold hover:bg-brand-600 transition-colors shadow-lg shadow-brand-500/30">
+          J'ai bien copié le mot de passe
+        </button>
+      </div>
+    </div>
+  </template>
+</Modal>
+
 </template>
 
 <script setup lang="ts">
@@ -442,6 +500,9 @@ import {
 import type { Staff, StaffCreateUpdate } from "@/api/staffService";
 const showAddModal = ref(false);
 const showEditModal = ref(false);
+const showSuccessModal = ref(false);
+const newStaffCredentials = ref({ email: "", password: "" });
+const formErrors = ref<Record<string, string[]>>({});
 const editingCode = ref("");
 const selectedMember = ref<any>(null);
 const showDetails = ref(false);
@@ -505,6 +566,7 @@ const closeDetails = () => {
 };
 
 const editMember = async (code: string) => {
+  formErrors.value = {};
   try {
     const member = await getStaffDetail(code);
 
@@ -536,8 +598,11 @@ const saveEditMember = async () => {
 
     await fetchStaff();
 
-  } catch(error) {
+  } catch(error: any) {
     console.error(error);
+    if (error.response && error.response.data) {
+      formErrors.value = error.response.data;
+    }
   }
 };
 
@@ -574,12 +639,20 @@ const removeMember = async (code: string) => {
   }
 };
 const openAddMemberModal = () => {
+  formErrors.value = {};
   showAddModal.value = true;
 };
 
 const saveMember = async () => {
+  formErrors.value = {};
   try {
-    await createStaff(form);
+    const res = await createStaff(form);
+
+    newStaffCredentials.value = {
+      email: form.email,
+      password: res.temporary_password,
+    };
+    showSuccessModal.value = true;
 
     showAddModal.value = false;
 
@@ -589,8 +662,20 @@ const saveMember = async () => {
     form.is_active = true;
 
     await fetchStaff();
-  } catch (err) {
+  } catch (err: any) {
     console.error(err);
+    if (err.response && err.response.data) {
+      formErrors.value = err.response.data;
+    }
+  }
+};
+
+const copyPassword = async () => {
+  try {
+    await navigator.clipboard.writeText(newStaffCredentials.value.password);
+    alert("Mot de passe copié !");
+  } catch (err) {
+    console.error("Échec de la copie", err);
   }
 };
 

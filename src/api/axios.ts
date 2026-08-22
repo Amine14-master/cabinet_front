@@ -16,13 +16,13 @@ api.interceptors.request.use((config) => {
 }, (error) => Promise.reject(error));
 
 api.interceptors.response.use(
-  (response) => response, 
+  (response) => response,
   async (error) => {
     const originalRequest = error.config;
 
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-      
+
       const refreshToken = localStorage.getItem('refresh');
 
       if (refreshToken) {
@@ -33,7 +33,7 @@ api.interceptors.response.use(
           });
 
           const newAccessToken = response.data.access;
-          
+
           localStorage.setItem('access', newAccessToken);
 
           originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
@@ -41,7 +41,7 @@ api.interceptors.response.use(
         } catch (refreshError) {
           console.error("Session expirée. Redirection vers login...");
           localStorage.clear();
-          window.location.href = '/login'; 
+          window.location.href = '/login';
           return Promise.reject(refreshError);
         }
       } else {

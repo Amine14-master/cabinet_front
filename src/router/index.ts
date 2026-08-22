@@ -22,9 +22,17 @@ const router = createRouter({
       meta: { title: 'Signup', requiresAuth: false },
     },
 
-    // ================= DASHBOARD =================
+    // ================= PUBLIC =================
     {
       path: '/',
+      name: 'Landing',
+      component: () => import('../views/LandingPage.vue'),
+      meta: { title: 'Accueil', requiresAuth: false },
+    },
+
+    // ================= DASHBOARD =================
+    {
+      path: '/dashboard',
       name: 'Dashboard',
       component: () => import('../modules/dashboard/pages/Dashboard.vue'),
       meta: { title: 'Dashboard', requiresAuth: true },
@@ -90,6 +98,12 @@ const router = createRouter({
       name: 'RendezVousAdd',
       component: () => import('../modules/appointments/pages/AddRendezVousPage.vue'),
       meta: { title: 'Ajouter un Rendez-vous', requiresAuth: true },
+    },
+    {
+      path: '/queue/today',
+      name: 'DailyQueue',
+      component: () => import('../modules/appointments/pages/DailyQueue.vue'),
+      meta: { title: 'File d\'Attente du Jour', requiresAuth: true },
     },
     {
       path: '/consultations',
@@ -158,6 +172,7 @@ const router = createRouter({
 // ================= AUTH GUARD =================
 router.beforeEach((to) => {
   const token = localStorage.getItem('access')
+  const role = localStorage.getItem('role') || 'patient'
   const isAuthenticated = !!token
 
   document.title = to.meta.title
@@ -169,9 +184,19 @@ router.beforeEach((to) => {
     return { name: 'Signin' }
   }
 
-  // logged in → block auth pages
-  if (isAuthenticated && (to.name === 'Signin' || to.name === 'Signup')) {
+  // logged in → block auth pages and landing page
+  if (isAuthenticated && (to.name === 'Signin' || to.name === 'Signup' || to.name === 'Landing')) {
     return { name: 'Dashboard' }
+  }
+
+  // Role-based route protection
+  if (isAuthenticated) {
+    const restrictedForStaff = ['/consultations', '/medicaments', '/ordonnances', '/team']
+    const isRestrictedPath = restrictedForStaff.some(path => to.path.startsWith(path))
+    
+    if (['secretary', 'assistant'].includes(role) && isRestrictedPath) {
+      return { path: '/appointments' }
+    }
   }
 
   return true
