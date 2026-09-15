@@ -29,6 +29,12 @@ const router = createRouter({
       component: () => import('../views/LandingPage.vue'),
       meta: { title: 'Accueil', requiresAuth: false },
     },
+    {
+      path: '/:speciality/:cabinetCode',
+      name: 'Platform',
+      component: () => import('../views/LandingPage.vue'),
+      meta: { title: 'Cabinet', requiresAuth: false },
+    },
 
     // ================= DASHBOARD =================
     {

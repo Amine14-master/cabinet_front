@@ -248,11 +248,13 @@ async function fetchTodayPatients() {
 
 async function fetchStats() {
   try {
-    // The web app uses api/axios which maps to base URL. Mobile API is /api/mobile.
-    // Assuming we can call the dashboard_stats route. Let's make sure the URL is correct.
-    const { data } = await api.get("mobile/dashboard/stats/");
-    if (data && data.stats) {
-      dashboardStats.value = data.stats;
+    const { data } = await api.get("doctors/dashboard/stats/");
+    if (data) {
+      dashboardStats.value = {
+        today_total: data.appointments_today,
+        today_waiting: data.upcoming_appointments, // roughly
+        today_completed: data.consultations_done
+      };
     }
   } catch (err) {
     console.error("Erreur stats:", err);
