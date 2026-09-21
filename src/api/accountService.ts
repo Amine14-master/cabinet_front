@@ -1,24 +1,18 @@
-import api from "./axios";
+import api from './axios'
 
 export interface AccountSecurityRequest {
-  username: string;
-  current_password: string;
-  new_password: string;
-  confirm_password: string;
+  username: string
+  current_password: string
+  new_password: string
+  confirm_password: string
 }
 
-export const updateAccountSecurity = async (
-  data: AccountSecurityRequest
-) => {
+export const updateAccountSecurity = async (data: AccountSecurityRequest) => {
   try {
-    const response = await api.put(
-      "users/account/update/",
-      data
-    );
+    const response = await api.put('users/account/update/', data)
 
-    return response.data;
-
+    return response.data
   } catch (error: any) {
-    throw error;
+    throw error
   }
-};
+}

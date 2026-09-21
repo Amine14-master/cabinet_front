@@ -10,12 +10,16 @@
           <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-7 2xl:gap-x-32">
             <div>
               <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Prénom</p>
-              <p class="text-sm font-medium text-gray-800 dark:text-white/90">{{doctor.first_name || "Non renseigné"}}</p>
+              <p class="text-sm font-medium text-gray-800 dark:text-white/90">
+                {{ doctor.first_name || 'Non renseigné' }}
+              </p>
             </div>
 
             <div>
               <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Nom</p>
-              <p class="text-sm font-medium text-gray-800 dark:text-white/90">{{doctor.last_name || "Non renseigné"}}</p>
+              <p class="text-sm font-medium text-gray-800 dark:text-white/90">
+                {{ doctor.last_name || 'Non renseigné' }}
+              </p>
             </div>
 
             <div>
@@ -23,13 +27,15 @@
                 Adresse e-mail
               </p>
               <p class="text-sm font-medium text-gray-800 dark:text-white/90">
-                {{doctor.email_public || "Non renseigné"}}
+                {{ doctor.email_public || 'Non renseigné' }}
               </p>
             </div>
 
             <div>
               <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Téléphone</p>
-              <p class="text-sm font-medium text-gray-800 dark:text-white/90">{{doctor.phone || "Non renseigné"}}</p>
+              <p class="text-sm font-medium text-gray-800 dark:text-white/90">
+                {{ doctor.phone || 'Non renseigné' }}
+              </p>
             </div>
           </div>
         </div>
@@ -91,8 +97,7 @@
           </div>
           <form class="flex flex-col">
             <div class="custom-scrollbar h-[458px] overflow-y-auto p-2">
-
-              <div >
+              <div>
                 <h5 class="mb-5 text-lg font-medium text-gray-800 dark:text-white/90 lg:mb-6">
                   Informations Personnelles
                 </h5>
@@ -102,7 +107,7 @@
                     <label
                       class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
                     >
-                       Prénom
+                      Prénom
                     </label>
                     <input
                       type="text"
@@ -115,7 +120,7 @@
                     <label
                       class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
                     >
-                     Nom
+                      Nom
                     </label>
                     <input
                       type="text"
@@ -127,7 +132,7 @@
                     <label
                       class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
                     >
-                       Prénom Arabe
+                      Prénom Arabe
                     </label>
                     <input
                       type="text"
@@ -140,7 +145,7 @@
                     <label
                       class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
                     >
-                     Nom Arabe
+                      Nom Arabe
                     </label>
                     <input
                       type="text"
@@ -149,7 +154,9 @@
                     />
                   </div>
                   <div class="col-span-2 lg:col-span-1">
-                    <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+                    <label
+                      class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
+                    >
                       Sexe
                     </label>
 
@@ -187,13 +194,11 @@
                       class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                     />
                   </div>
-
-         
                 </div>
-              </div >
+              </div>
               <div class="mt-7">
                 <h5 class="mb-5 text-lg font-medium text-gray-800 dark:text-white/90 lg:mb-6">
-                   Réseaux Sociaux
+                  Réseaux Sociaux
                 </h5>
 
                 <div class="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
@@ -210,10 +215,6 @@
                     />
                   </div>
 
-          
-
-        
-
                   <div>
                     <label
                       class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
@@ -222,7 +223,7 @@
                     </label>
                     <input
                       type="text"
-                   v-model="doctor.instagram"
+                      v-model="doctor.instagram"
                       class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                     />
                   </div>
@@ -242,7 +243,7 @@
                 type="button"
                 class="flex w-full justify-center rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600 sm:w-auto"
               >
-               Enregistrer  
+                Enregistrer
               </button>
             </div>
           </form>
@@ -253,63 +254,54 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
-import Modal from "./Modal.vue"
-import { updateDoctorProfile } from "@/api/doctorService"
-import Swal from "sweetalert2"
+import { ref } from 'vue'
+import Modal from './Modal.vue'
+import { updateDoctorProfile } from '@/api/doctorService'
+import Swal from 'sweetalert2'
 const props = defineProps({
   doctor: {
     type: Object,
-    default: () => ({})
-  }
+    default: () => ({}),
+  },
 })
 const saveProfile = async () => {
   if (!props.doctor.first_name?.trim()) {
     return Swal.fire({
-      icon: "warning",
-      title: "Champ obligatoire",
-      text: "Veuillez saisir le prénom."
+      icon: 'warning',
+      title: 'Champ obligatoire',
+      text: 'Veuillez saisir le prénom.',
     })
   }
 
   if (!props.doctor.last_name?.trim()) {
     return Swal.fire({
-      icon: "warning",
-      title: "Champ obligatoire",
-      text: "Veuillez saisir le nom."
+      icon: 'warning',
+      title: 'Champ obligatoire',
+      text: 'Veuillez saisir le nom.',
     })
   }
 
-  if (
-    props.doctor.email_public &&
-    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(props.doctor.email_public)
-  ) {
+  if (props.doctor.email_public && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(props.doctor.email_public)) {
     return Swal.fire({
-      icon: "error",
-      title: "Email invalide",
-      text: "Veuillez saisir une adresse e-mail valide."
+      icon: 'error',
+      title: 'Email invalide',
+      text: 'Veuillez saisir une adresse e-mail valide.',
     })
   }
 
-  if (
-    props.doctor.facebook &&
-    !props.doctor.facebook.startsWith("http")
-  ) {
+  if (props.doctor.facebook && !props.doctor.facebook.startsWith('http')) {
     return Swal.fire({
-      icon: "warning",
-      title: "Facebook",
-      text: "Le lien Facebook doit commencer par http:// ou https://"
+      icon: 'warning',
+      title: 'Facebook',
+      text: 'Le lien Facebook doit commencer par http:// ou https://',
     })
   }
 
-  if (
-    props.doctor.instagram &&
-    !props.doctor.instagram.startsWith("http")
-  ) {
+  if (props.doctor.instagram && !props.doctor.instagram.startsWith('http')) {
     return Swal.fire({
-      icon: "warning",
-      title: "Instagram",
-      text: "Le lien Instagram doit commencer par http:// ou https://"
+      icon: 'warning',
+      title: 'Instagram',
+      text: 'Le lien Instagram doit commencer par http:// ou https://',
     })
   }
 
@@ -317,19 +309,19 @@ const saveProfile = async () => {
     await updateDoctorProfile(props.doctor)
 
     Swal.fire({
-      icon: "success",
-      title: "Succès",
-      text: "Profil mis à jour avec succès.",
+      icon: 'success',
+      title: 'Succès',
+      text: 'Profil mis à jour avec succès.',
       timer: 1800,
-      showConfirmButton: false
+      showConfirmButton: false,
     })
 
     isProfileInfoModal.value = false
   } catch (e) {
     Swal.fire({
-      icon: "error",
-      title: "Erreur",
-      text: "Impossible de mettre à jour le profil."
+      icon: 'error',
+      title: 'Erreur',
+      text: 'Impossible de mettre à jour le profil.',
     })
 
     console.error(e)

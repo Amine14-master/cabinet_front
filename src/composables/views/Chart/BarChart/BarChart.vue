@@ -8,10 +8,10 @@
 </template>
 
 <script setup>
-import BarChartOne from "@/components/charts/BarChart/BarChartOne.vue";
-import ComponentCard from "@/layouts/common/ComponentCard.vue";
-import PageBreadcrumb from "@/layouts/common/PageBreadcrumb.vue";
-import AdminLayout from "@/layouts/AdminLayout.vue";
-import { ref } from "vue";
-const currentPageTitle = ref("Bar Chart");
+import BarChartOne from '@/components/charts/BarChart/BarChartOne.vue'
+import ComponentCard from '@/layouts/common/ComponentCard.vue'
+import PageBreadcrumb from '@/layouts/common/PageBreadcrumb.vue'
+import AdminLayout from '@/layouts/AdminLayout.vue'
+import { ref } from 'vue'
+const currentPageTitle = ref('Bar Chart')
 </script>

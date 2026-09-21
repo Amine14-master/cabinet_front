@@ -1,9 +1,9 @@
-import api from "./axios"
+import api from './axios'
 
-export type Period = "morning" | "afternoon"
+export type Period = 'morning' | 'afternoon'
 
 export type WorkingDayPayload = {
-  day: "sunday" | "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday"
+  day: 'sunday' | 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday'
   period: Period
   start_time: string
   end_time: string
@@ -21,12 +21,12 @@ export type OverridePayload = {
 
 /* ================= WORKING DAYS (FIXED) ================= */
 export const getWorkingDays = async () => {
-  const { data } = await api.get("appointments/working-days/")
+  const { data } = await api.get('appointments/working-days/')
   return data
 }
 
 export const createWorkingDay = async (payload: WorkingDayPayload) => {
-  const { data } = await api.post("appointments/working-days/", payload)
+  const { data } = await api.post('appointments/working-days/', payload)
   return data
 }
 
@@ -41,15 +41,14 @@ export const deleteWorkingDay = async (id: number) => {
   await api.delete(`appointments/working-days/${id}/`)
 }
 
-
 /* ================= OVERRIDES (EXCEPTIONS) ================= */
 export const getOverrides = async () => {
-  const { data } = await api.get("appointments/working-day-overrides/")
+  const { data } = await api.get('appointments/working-day-overrides/')
   return data
 }
 
 export const createOverride = async (payload: OverridePayload) => {
-  const { data } = await api.post("appointments/working-day-overrides/", payload)
+  const { data } = await api.post('appointments/working-day-overrides/', payload)
   return data
 }
 

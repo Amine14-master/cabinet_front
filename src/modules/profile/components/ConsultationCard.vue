@@ -2,48 +2,42 @@
   <div>
     <div class="p-5 mb-6 border border-gray-200 rounded-2xl dark:border-gray-800 lg:p-6">
       <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-    <div>
-    <h4 class="text-lg font-semibold text-gray-800 dark:text-white/90 lg:mb-6">
-      Profil Professionnel
-    </h4>
+        <div>
+          <h4 class="text-lg font-semibold text-gray-800 dark:text-white/90 lg:mb-6">
+            Profil Professionnel
+          </h4>
 
-    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-7 2xl:gap-x-32">
-      <div>
-        <p class="mb-2 text-xs text-gray-500 dark:text-gray-400">
-          Prix de consultation
-        </p>
-        <p class="text-sm font-medium text-gray-800 dark:text-white/90">
-          {{ doctor.consultation_price ? doctor.consultation_price + " DA" : "Non renseigné" }}
-        </p>
-      </div>
+          <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-7 2xl:gap-x-32">
+            <div>
+              <p class="mb-2 text-xs text-gray-500 dark:text-gray-400">Prix de consultation</p>
+              <p class="text-sm font-medium text-gray-800 dark:text-white/90">
+                {{
+                  doctor.consultation_price ? doctor.consultation_price + ' DA' : 'Non renseigné'
+                }}
+              </p>
+            </div>
 
-      <div>
-        <p class="mb-2 text-xs text-gray-500 dark:text-gray-400">
-          Années d'expérience
-        </p>
-        <p class="text-sm font-medium text-gray-800 dark:text-white/90">
-          {{ doctor.experience_years ? doctor.experience_years + " ans" : "Non renseigné" }}
-        </p>
-      </div>
-      <div>
-        <p class="mb-2 text-xs text-gray-500 dark:text-gray-400">
-          Spécialité
-        </p>
+            <div>
+              <p class="mb-2 text-xs text-gray-500 dark:text-gray-400">Années d'expérience</p>
+              <p class="text-sm font-medium text-gray-800 dark:text-white/90">
+                {{ doctor.experience_years ? doctor.experience_years + ' ans' : 'Non renseigné' }}
+              </p>
+            </div>
+            <div>
+              <p class="mb-2 text-xs text-gray-500 dark:text-gray-400">Spécialité</p>
 
-        <p class="text-sm font-medium text-gray-800 dark:text-white/90">
-          {{ doctor.speciality_detail?.name || "Non renseignée" }}
-        </p>
-      </div>
+              <p class="text-sm font-medium text-gray-800 dark:text-white/90">
+                {{ doctor.speciality_detail?.name || 'Non renseignée' }}
+              </p>
+            </div>
 
-      <div class="lg:col-span-2">
-        <p class="mb-2 text-xs text-gray-500 dark:text-gray-400">
-          Présentation du médecin
-        </p>
-        <p class="text-sm leading-6 font-medium text-gray-800 dark:text-white/90">
-          {{ doctor.bio || "Aucune présentation disponible." }}
-        </p>
-      </div>
-    </div>
+            <div class="lg:col-span-2">
+              <p class="mb-2 text-xs text-gray-500 dark:text-gray-400">Présentation du médecin</p>
+              <p class="text-sm leading-6 font-medium text-gray-800 dark:text-white/90">
+                {{ doctor.bio || 'Aucune présentation disponible.' }}
+              </p>
+            </div>
+          </div>
         </div>
 
         <button class="edit-button" @click="isProfileInfoModal = true">
@@ -95,19 +89,17 @@
           </button>
           <div class="px-2 pr-14">
             <h4 class="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90">
-             Modifier le Profil Professionnel 
+              Modifier le Profil Professionnel
             </h4>
             <p class="mb-6 text-sm text-gray-500 dark:text-gray-400 lg:mb-7">
-                Mettez à jour vos informations professionnelles visibles par les patients.
-
+              Mettez à jour vos informations professionnelles visibles par les patients.
             </p>
           </div>
           <form class="flex flex-col">
             <div class="custom-scrollbar h-[458px] overflow-y-auto p-2">
-
-              <div >
+              <div>
                 <h5 class="mb-5 text-lg font-medium text-gray-800 dark:text-white/90 lg:mb-6">
-                   Profil Professionnel
+                  Profil Professionnel
                 </h5>
 
                 <div class="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
@@ -115,7 +107,7 @@
                     <label
                       class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
                     >
-                       Prix de consultation
+                      Prix de consultation
                     </label>
                     <input
                       type="text"
@@ -128,8 +120,7 @@
                     <label
                       class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
                     >
-                     Années d'expérience
-
+                      Années d'expérience
                     </label>
                     <input
                       type="text"
@@ -137,55 +128,48 @@
                       class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                     />
                   </div>
-              
 
                   <div class="col-span-1 lg:col-span-1">
-                    <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+                    <label
+                      class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
+                    >
                       Spéciality
                     </label>
 
-                <select
-                  v-model="doctor.speciality"
-                  class="h-11 w-full rounded-lg border border-gray-300 px-4 text-sm"
-                >
-                  <option value="">Choisir une spécialité</option>
+                    <select
+                      v-model="doctor.speciality"
+                      class="h-11 w-full rounded-lg border border-gray-300 px-4 text-sm"
+                    >
+                      <option value="">Choisir une spécialité</option>
 
-                  <option
-                    v-for="item in specialities"
-                    :key="item.code"
-                    :value="item.code"
-                  >
-                    {{ item.name }}
-                  </option>
-                </select>
+                      <option v-for="item in specialities" :key="item.code" :value="item.code">
+                        {{ item.name }}
+                      </option>
+                    </select>
                   </div>
-
-         
                 </div>
-              </div >
+              </div>
               <div class="mt-7">
-        
-
                 <div class="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
-                <div class="col-span-2">
-                  <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                    Présentation du médecin
-                  </label>
+                  <div class="col-span-2">
+                    <label
+                      class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
+                    >
+                      Présentation du médecin
+                    </label>
 
-                  <textarea
-                    v-model="doctor.bio"
-                    rows="4"
-                    maxlength="500"
-                    placeholder="Présentez votre parcours, vos domaines d'expertise et votre approche avec les patients..."
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm dark:border-gray-700 dark:bg-gray-900 dark:text-white"
-                  ></textarea>
+                    <textarea
+                      v-model="doctor.bio"
+                      rows="4"
+                      maxlength="500"
+                      placeholder="Présentez votre parcours, vos domaines d'expertise et votre approche avec les patients..."
+                      class="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm dark:border-gray-700 dark:bg-gray-900 dark:text-white"
+                    ></textarea>
 
-                  <p class="mt-1 text-xs text-gray-500">
-                    {{ doctor.bio?.length || 0 }}/500 caractères
-                  </p>
-                </div>
-
-          
+                    <p class="mt-1 text-xs text-gray-500">
+                      {{ doctor.bio?.length || 0 }}/500 caractères
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -202,7 +186,7 @@
                 type="button"
                 class="flex w-full justify-center rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600 sm:w-auto"
               >
-               Enregistrer  
+                Enregistrer
               </button>
             </div>
           </form>
@@ -213,58 +197,55 @@
 </template>
 
 <script setup>
-import { ref,onMounted  } from "vue"
-import Modal from "./Modal.vue"
-import { updateDoctorProfile,getSpecialities  } from "@/api/doctorService"
-import Swal from "sweetalert2"
+import { ref, onMounted } from 'vue'
+import Modal from './Modal.vue'
+import { updateDoctorProfile, getSpecialities } from '@/api/doctorService'
+import Swal from 'sweetalert2'
 const props = defineProps({
   doctor: {
     type: Object,
-    default: () => ({})
-  }
+    default: () => ({}),
+  },
 })
 const saveProfile = async () => {
   if (!props.doctor.first_name?.trim()) {
     return Swal.fire({
-      icon: "warning",
-      title: "Champ obligatoire",
-      text: "Veuillez saisir le prénom."
+      icon: 'warning',
+      title: 'Champ obligatoire',
+      text: 'Veuillez saisir le prénom.',
     })
   }
 
-
-
   try {
-  const data = {
-  first_name: props.doctor.first_name,
+    const data = {
+      first_name: props.doctor.first_name,
       last_name: props.doctor.last_name,
       experience_years: props.doctor.experience_years,
       consultation_price: props.doctor.consultation_price,
       bio: props.doctor.bio,
-      speciality: props.doctor.speciality?.id || props.doctor.speciality
+      speciality: props.doctor.speciality?.id || props.doctor.speciality,
     }
 
     await updateDoctorProfile(data)
 
     Swal.fire({
-      icon: "success",
-      title: "Succès",
-      text: "Profil mis à jour avec succès.",
+      icon: 'success',
+      title: 'Succès',
+      text: 'Profil mis à jour avec succès.',
       timer: 1800,
-      showConfirmButton: false
+      showConfirmButton: false,
     })
 
     isProfileInfoModal.value = false
   } catch (e) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Erreur',
+      text: JSON.stringify(e.response?.data),
+    })
 
-  Swal.fire({
-    icon: "error",
-    title: "Erreur",
-    text: JSON.stringify(e.response?.data)
-  })
-
-  console.error(e)
-}
+    console.error(e)
+  }
 }
 const isProfileInfoModal = ref(false)
 const specialities = ref([])
@@ -272,7 +253,7 @@ onMounted(async () => {
   try {
     specialities.value = await getSpecialities()
   } catch (error) {
-    console.error("Erreur chargement spécialités", error)
+    console.error('Erreur chargement spécialités', error)
   }
 })
 </script>

@@ -3,12 +3,10 @@
     <h2 class="text-xl font-semibold text-gray-800 dark:text-white/90" x-text="pageTitle">
       {{ pageTitle }}
     </h2>
- 
   </div>
 </template>
 
 <script setup lang="ts">
-
 interface BreadcrumbProps {
   pageTitle: string
 }

@@ -5,16 +5,15 @@
       @click.prevent="toggleDropdown"
     >
       <span class="mr-3 overflow-hidden rounded-full h-11 w-11">
-       <img
-        :src="photo"
-        alt="User"
-        class="w-full h-full object-cover"
-      />
+        <img :src="photo" alt="User" class="w-full h-full object-cover" />
       </span>
 
       <span class="block mr-1 font-medium text-theme-sm">{{ username }}</span>
 
-      <ChevronDownIcon :class="{ 'rotate-180': dropdownOpen }" class="transition-transform duration-200" />
+      <ChevronDownIcon
+        :class="{ 'rotate-180': dropdownOpen }"
+        class="transition-transform duration-200"
+      />
     </button>
 
     <div
@@ -23,7 +22,7 @@
     >
       <div class="px-3 py-2">
         <span class="block font-medium text-gray-700 text-theme-sm dark:text-gray-400">
-          {{ login  }}
+          {{ login }}
         </span>
         <span class="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400">
           {{ role }}
@@ -50,17 +49,26 @@
         @click="signOut"
         class="flex items-center w-full gap-3 px-3 py-2 mt-3 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
       >
-        <LogoutIcon class="w-5 h-5 text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300" />
+        <LogoutIcon
+          class="w-5 h-5 text-gray-500 group-hover:text-gray-700 dark:group-hover:text-gray-300"
+        />
         Sign out
       </button>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-import { ChevronDownIcon, InfoCircleIcon, LogoutIcon, LockIcon, UserCircleIcon,UserGroupIcon } from '@/icons'
+import {
+  ChevronDownIcon,
+  InfoCircleIcon,
+  LogoutIcon,
+  LockIcon,
+  UserCircleIcon,
+  UserGroupIcon,
+} from '@/icons'
 import { onMounted, onUnmounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { getDoctorProfile } from "@/api/doctorService"
+import { getDoctorProfile } from '@/api/doctorService'
 
 const router = useRouter()
 const dropdownOpen = ref(false)
@@ -71,13 +79,17 @@ const role = ref('Membre')
 
 const menuItems = [
   { href: '/profile', icon: UserCircleIcon, text: 'Modifier le profil' },
-  { href: '/Security', icon: LockIcon , text: 'Sécurité du compte' },
+  { href: '/Security', icon: LockIcon, text: 'Sécurité du compte' },
   { href: '/team', icon: UserGroupIcon, text: 'Équipe du cabinet' },
   { href: '/profile', icon: InfoCircleIcon, text: 'Support' },
 ]
 
-const toggleDropdown = () => { dropdownOpen.value = !dropdownOpen.value }
-const closeDropdown = () => { dropdownOpen.value = false }
+const toggleDropdown = () => {
+  dropdownOpen.value = !dropdownOpen.value
+}
+const closeDropdown = () => {
+  dropdownOpen.value = false
+}
 
 const signOut = async () => {
   try {
@@ -89,9 +101,9 @@ const signOut = async () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`
+          Authorization: `Bearer ${accessToken}`,
         },
-        body: JSON.stringify({ refresh: refreshToken })
+        body: JSON.stringify({ refresh: refreshToken }),
       })
     }
   } catch (e) {
@@ -126,12 +138,11 @@ onMounted(async () => {
     if (doctor.first_name) {
       username.value = `Dr. ${doctor.first_name} ${doctor.last_name}`
     }
-    const storedUsername = localStorage.getItem("username")
+    const storedUsername = localStorage.getItem('username')
 
     if (storedUsername) {
       login.value = storedUsername
     }
-
   } catch (e) {
     console.error(e)
   }
@@ -142,5 +153,5 @@ onUnmounted(() => {
 })
 
 const photo = ref('/images/user/owner.jpg')
-const login = ref("Utilisateur")
+const login = ref('Utilisateur')
 </script>

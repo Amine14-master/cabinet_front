@@ -10,7 +10,7 @@
       <!-- Footer -->
       <footer class="p-6 pt-0 text-center">
         <p class="text-sm text-gray-400">
-          Designed and Developed by 
+          Designed and Developed by
           <span class="text-brand-500 font-medium">Poura</span>
         </p>
       </footer>
@@ -23,4 +23,3 @@ import AppHeader from './AppHeader.vue'
 import AppSidebar from './AppSidebar.vue'
 import Backdrop from './Backdrop.vue'
 </script>
-

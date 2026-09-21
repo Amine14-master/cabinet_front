@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import AdminLayout from "../layouts/AdminLayout.vue"
+import AdminLayout from '../layouts/AdminLayout.vue'
 import DoctorDashboard from '../components/ecommerce/DoctorDashboard.vue'
 
 export default {

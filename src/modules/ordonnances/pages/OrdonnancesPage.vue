@@ -10,15 +10,13 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useRoute } from "vue-router";
-import PageBreadcrumb from "@/layouts/common/PageBreadcrumb.vue";
-import AdminLayout from "@/layouts/AdminLayout.vue";
-import ComponentCard from "@/layouts/common/ComponentCard.vue";
-import Ordonnaces from "../components/OrdonnaceList.vue";
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
+import PageBreadcrumb from '@/layouts/common/PageBreadcrumb.vue'
+import AdminLayout from '@/layouts/AdminLayout.vue'
+import ComponentCard from '@/layouts/common/ComponentCard.vue'
+import Ordonnaces from '../components/OrdonnaceList.vue'
 
-const route = useRoute();
-const currentPageTitle = ref("Liste des Ordonnaces");
-
-
+const route = useRoute()
+const currentPageTitle = ref('Liste des Ordonnaces')
 </script>

@@ -74,11 +74,11 @@ const router = createRouter({
     // ================= MODULES =================
     // Change your Patient routes to this:
     {
-      path: "/patients",
-      name: "PatientTable",
-      component: () => import("../modules/patients/pages/PatientsPage.vue"),
+      path: '/patients',
+      name: 'PatientTable',
+      component: () => import('../modules/patients/pages/PatientsPage.vue'),
       meta: {
-        title: "List Patients",
+        title: 'List Patients',
         requiresAuth: true,
       },
     },
@@ -86,12 +86,12 @@ const router = createRouter({
       path: '/patients/add',
       name: 'AddPatient',
       component: () => import('@/modules/patients/pages/AddPatientPage.vue'),
-      meta: { title: 'Ajouter un Patient', requiresAuth: true }
+      meta: { title: 'Ajouter un Patient', requiresAuth: true },
     },
     {
-      path: "/patients/:code",
-      name: "patient-details",
-      component: () => import("@/modules/patients/pages/DetailsPatientPage.vue"),
+      path: '/patients/:code',
+      name: 'patient-details',
+      component: () => import('@/modules/patients/pages/DetailsPatientPage.vue'),
     },
     {
       path: '/appointments',
@@ -109,55 +109,49 @@ const router = createRouter({
       path: '/queue/today',
       name: 'DailyQueue',
       component: () => import('../modules/appointments/pages/DailyQueue.vue'),
-      meta: { title: 'File d\'Attente du Jour', requiresAuth: true },
+      meta: { title: "File d'Attente du Jour", requiresAuth: true },
     },
     {
       path: '/consultations',
       name: 'ConsultationsList',
-      component: () => import('@/modules/consultations/pages/ConsultationPage.vue')
+      component: () => import('@/modules/consultations/pages/ConsultationPage.vue'),
     },
 
     {
       path: '/consultations/create',
       name: 'ConsultationCreate',
-      component: () => import('@/modules/consultations/pages/AddConsultationPage.vue')
+      component: () => import('@/modules/consultations/pages/AddConsultationPage.vue'),
     },
     {
       path: '/consultations/:id',
       name: 'ConsultationDetail',
-      component: () => import('@/modules/consultations/components/ConsultationDetail.vue')
+      component: () => import('@/modules/consultations/components/ConsultationDetail.vue'),
     },
     {
       path: '/ordonnances',
       name: 'OrdonanceList',
-      component: () => import('@/modules/ordonnances/pages/OrdonnancesPage.vue')
+      component: () => import('@/modules/ordonnances/pages/OrdonnancesPage.vue'),
     },
-
 
     {
       path: '/medicaments',
       name: 'MedicamentList',
-      component: () => import('@/modules/medicaments/pages/MedicamentsPage.vue')
+      component: () => import('@/modules/medicaments/pages/MedicamentsPage.vue'),
     },
     {
       path: '/medicaments/create',
       name: 'MedicamentCreate',
-      component: () => import('@/modules/medicaments/pages/AddMedicamentsPage.vue')
+      component: () => import('@/modules/medicaments/pages/AddMedicamentsPage.vue'),
     },
     // ================= TEAM =================
-
 
     {
       path: '/team',
       name: 'Team',
-      component: () => import('@/modules/team/pages/TeamPage.vue')
+      component: () => import('@/modules/team/pages/TeamPage.vue'),
     },
 
-
     // ================= UI =================
-
-
-
 
     // ================= ERROR =================
     {
@@ -181,9 +175,7 @@ router.beforeEach((to) => {
   const role = localStorage.getItem('role') || 'patient'
   const isAuthenticated = !!token
 
-  document.title = to.meta.title
-    ? `${to.meta.title} | Poura`
-    : 'Poura'
+  document.title = to.meta.title ? `${to.meta.title} | Poura` : 'Poura'
 
   // not logged in → block protected pages
   if (to.meta.requiresAuth && !isAuthenticated) {
@@ -198,8 +190,8 @@ router.beforeEach((to) => {
   // Role-based route protection
   if (isAuthenticated) {
     const restrictedForStaff = ['/consultations', '/medicaments', '/ordonnances', '/team']
-    const isRestrictedPath = restrictedForStaff.some(path => to.path.startsWith(path))
-    
+    const isRestrictedPath = restrictedForStaff.some((path) => to.path.startsWith(path))
+
     if (['secretary', 'assistant'].includes(role) && isRestrictedPath) {
       return { path: '/appointments' }
     }

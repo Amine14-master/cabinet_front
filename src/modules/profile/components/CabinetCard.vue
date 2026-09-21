@@ -3,54 +3,63 @@
     <div class="p-5 border border-gray-200 rounded-2xl dark:border-gray-800 lg:p-6">
       <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
         <div>
-          <h4 class="text-lg font-semibold text-gray-800 dark:text-white/90 lg:mb-6">Informations Cabinet</h4>
+          <h4 class="text-lg font-semibold text-gray-800 dark:text-white/90 lg:mb-6">
+            Informations Cabinet
+          </h4>
 
           <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-7 2xl:gap-x-32">
             <div>
               <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Wilaya</p>
-              <p class="text-sm font-medium text-gray-800 dark:text-white/90">{{ doctor.cabinet?.wilaya || "-" }}</p>
-            </div>
-
-            <div>
-              <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Ville / Commune</p>
               <p class="text-sm font-medium text-gray-800 dark:text-white/90">
-               {{ doctor.cabinet?.commune || "-" }}
+                {{ doctor.cabinet?.wilaya || '-' }}
               </p>
             </div>
 
             <div>
               <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
-                Adresse
+                Ville / Commune
               </p>
-              <p class="text-sm font-medium text-gray-800 dark:text-white/90">{{ doctor.cabinet?.address || "-" }}</p>
+              <p class="text-sm font-medium text-gray-800 dark:text-white/90">
+                {{ doctor.cabinet?.commune || '-' }}
+              </p>
             </div>
 
-          <div>
-            <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Voir sur Google Maps</p>
-            <a
-              :href="doctor.cabinet?.maps_link"
-              v-if="doctor.cabinet?.maps_link"
-              target="_blank"
-              class="text-sm font-medium text-gray-800 dark:text-white/90 hover:text-gray-600 dark:hover:text-white flex items-center gap-2"
-            >
-              <!-- Map Pin SVG -->
-              <svg
-                class="w-5 h-5 text-blue-500"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+            <div>
+              <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Adresse</p>
+              <p class="text-sm font-medium text-gray-800 dark:text-white/90">
+                {{ doctor.cabinet?.address || '-' }}
+              </p>
+            </div>
+
+            <div>
+              <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
+                Voir sur Google Maps
+              </p>
+              <a
+                :href="doctor.cabinet?.maps_link"
+                v-if="doctor.cabinet?.maps_link"
+                target="_blank"
+                class="text-sm font-medium text-gray-800 dark:text-white/90 hover:text-gray-600 dark:hover:text-white flex items-center gap-2"
               >
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
-              </svg>
-              Ouvrir Google Maps
-            </a>
+                <!-- Map Pin SVG -->
+                <svg
+                  class="w-5 h-5 text-blue-500"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"
+                  />
+                </svg>
+                Ouvrir Google Maps
+              </a>
+            </div>
           </div>
-          </div>
-        
         </div>
 
         <button
-          @click="openModal" 
+          @click="openModal"
           class="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200 lg:inline-flex lg:w-auto"
         >
           <svg
@@ -100,10 +109,10 @@
           </button>
           <div class="px-2 pr-14">
             <h4 class="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90">
-             Modifier Informations Cabinet
+              Modifier Informations Cabinet
             </h4>
             <p class="mb-6 text-sm text-gray-500 dark:text-gray-400 lg:mb-7">
-               Mettez à jour vos informations pour que votre cabinet soit à jour.
+              Mettez à jour vos informations pour que votre cabinet soit à jour.
             </p>
           </div>
           <form class="flex flex-col">
@@ -115,7 +124,7 @@
                   </label>
                   <input
                     type="text"
-                  v-model="localCabinet.wilaya"
+                    v-model="localCabinet.wilaya"
                     class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                   />
                 </div>
@@ -126,7 +135,7 @@
                   </label>
                   <input
                     type="text"
-                     v-model="localCabinet.commune"
+                    v-model="localCabinet.commune"
                     class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                   />
                 </div>
@@ -137,14 +146,14 @@
                   </label>
                   <input
                     type="text"
-                   v-model="localCabinet.address"
+                    v-model="localCabinet.address"
                     class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                   />
                 </div>
 
                 <div>
                   <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
-                    Adresse Google Maps 
+                    Adresse Google Maps
                   </label>
                   <input
                     type="text"
@@ -178,9 +187,9 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
-import Modal from "./Modal.vue"
-import { updateDoctorProfile } from "@/api/doctorService"
+import { ref } from 'vue'
+import Modal from './Modal.vue'
+import { updateDoctorProfile } from '@/api/doctorService'
 
 const props = defineProps({
   doctor: {
@@ -192,10 +201,10 @@ const props = defineProps({
 const isProfileAddressModal = ref(false)
 
 const localCabinet = ref({
-  wilaya: "",
-  commune: "",
-  address: "",
-  maps_link: "",
+  wilaya: '',
+  commune: '',
+  address: '',
+  maps_link: '',
 })
 
 const openModal = () => {
@@ -216,10 +225,7 @@ const saveProfile = async () => {
 
     isProfileAddressModal.value = false
   } catch (error) {
-    console.error("Erreur mise à jour :", error)
+    console.error('Erreur mise à jour :', error)
   }
 }
 </script>
-
-
-

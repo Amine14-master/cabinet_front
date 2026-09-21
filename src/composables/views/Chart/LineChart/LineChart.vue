@@ -10,10 +10,10 @@
 </template>
 
 <script setup>
-import LineChartOne from "@/components/charts/LineChart/LineChartOne.vue";
-import ComponentCard from "@/layouts/common/ComponentCard.vue";
-import PageBreadcrumb from "@/layouts/common/PageBreadcrumb.vue";
-import AdminLayout from "@/layouts/AdminLayout.vue";
-import { ref } from "vue";
-const currentPageTitle = ref("Line Chart");
+import LineChartOne from '@/components/charts/LineChart/LineChartOne.vue'
+import ComponentCard from '@/layouts/common/ComponentCard.vue'
+import PageBreadcrumb from '@/layouts/common/PageBreadcrumb.vue'
+import AdminLayout from '@/layouts/AdminLayout.vue'
+import { ref } from 'vue'
+const currentPageTitle = ref('Line Chart')
 </script>

@@ -11,13 +11,11 @@
 </template>
 
 <script setup lang="ts">
-
 const emit = defineEmits<{
-  (e: "close"): void
-}>();
+  (e: 'close'): void
+}>()
 
 const close = () => {
-  emit("close");
-};
-
+  emit('close')
+}
 </script>

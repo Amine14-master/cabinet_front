@@ -8,20 +8,12 @@
         class="xl:col-span-2 rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]"
       >
         <div class="p-4 border-b border-gray-100 dark:border-gray-800">
-          <h2 class="text-xl font-semibold text-gray-800 dark:text-white">
-            Planning du Médecin
-          </h2>
-          <p class="text-sm text-gray-500 mt-1">
-            Gérez les disponibilités et rendez-vous
-          </p>
+          <h2 class="text-xl font-semibold text-gray-800 dark:text-white">Planning du Médecin</h2>
+          <p class="text-sm text-gray-500 mt-1">Gérez les disponibilités et rendez-vous</p>
         </div>
 
         <div class="custom-calendar p-4">
-          <FullCalendar
-            ref="calendarRef"
-            class="min-h-screen"
-            :options="calendarOptions"
-          />
+          <FullCalendar ref="calendarRef" class="min-h-screen" :options="calendarOptions" />
         </div>
       </div>
 
@@ -31,12 +23,8 @@
       >
         <div class="flex items-center justify-between mb-5">
           <div>
-            <h3 class="text-lg font-semibold text-gray-800 dark:text-white">
-              Disponibilité
-            </h3>
-            <p class="text-sm text-gray-500">
-              Ajouter les créneaux disponibles
-            </p>
+            <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Disponibilité</h3>
+            <p class="text-sm text-gray-500">Ajouter les créneaux disponibles</p>
           </div>
         </div>
 
@@ -132,23 +120,16 @@
                 <p class="font-medium text-gray-800 dark:text-white">
                   {{ item.date }}
                 </p>
-                <p class="text-sm text-gray-500">
-                  {{ item.start }} - {{ item.end }}
-                </p>
+                <p class="text-sm text-gray-500">{{ item.start }} - {{ item.end }}</p>
               </div>
 
-              <span
-                class="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700"
-              >
+              <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">
                 {{ item.max }} Patients
               </span>
             </div>
           </div>
 
-          <div
-            v-if="availabilities.length === 0"
-            class="text-sm text-gray-400"
-          >
+          <div v-if="availabilities.length === 0" class="text-sm text-gray-400">
             Aucune disponibilité ajoutée
           </div>
         </div>
@@ -158,21 +139,21 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue"
-import FullCalendar from "@fullcalendar/vue3"
-import dayGridPlugin from "@fullcalendar/daygrid"
-import interactionPlugin from "@fullcalendar/interaction"
+import { ref, reactive } from 'vue'
+import FullCalendar from '@fullcalendar/vue3'
+import dayGridPlugin from '@fullcalendar/daygrid'
+import interactionPlugin from '@fullcalendar/interaction'
 
-import AdminLayout from "@/layouts/AdminLayout.vue"
-import PageBreadcrumb from "@/layouts/common/PageBreadcrumb.vue"
+import AdminLayout from '@/layouts/AdminLayout.vue'
+import PageBreadcrumb from '@/layouts/common/PageBreadcrumb.vue'
 
-const currentPageTitle = ref("Calendrier Médecin")
+const currentPageTitle = ref('Calendrier Médecin')
 const calendarRef = ref(null)
 
-const slotDate = ref("")
-const slotStart = ref("")
-const slotEnd = ref("")
-const slotDuration = ref("30")
+const slotDate = ref('')
+const slotStart = ref('')
+const slotEnd = ref('')
+const slotDuration = ref('30')
 const maxPatients = ref(2)
 
 const availabilities = ref([])
@@ -190,25 +171,25 @@ const addAvailability = () => {
   })
 
   events.value.push({
-    title: "Disponible",
+    title: 'Disponible',
     start: slotDate.value,
-    color: "#22c55e",
+    color: '#22c55e',
   })
 
-  slotDate.value = ""
-  slotStart.value = ""
-  slotEnd.value = ""
+  slotDate.value = ''
+  slotStart.value = ''
+  slotEnd.value = ''
 }
 
 const calendarOptions = reactive({
   plugins: [dayGridPlugin, interactionPlugin],
-  initialView: "dayGridMonth",
+  initialView: 'dayGridMonth',
   selectable: true,
   events: events,
   headerToolbar: {
-    left: "prev,next today",
-    center: "title",
-    right: "dayGridMonth",
+    left: 'prev,next today',
+    center: 'title',
+    right: 'dayGridMonth',
   },
 })
 </script>

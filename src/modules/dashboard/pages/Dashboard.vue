@@ -28,9 +28,9 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import AdminLayout from "../../../layouts/AdminLayout.vue"
+import AdminLayout from '../../../layouts/AdminLayout.vue'
 import DoctorDashboard from '../components/DoctorDashboard.vue'
-import api from "@/api/axios"
+import api from '@/api/axios'
 
 const role = ref(localStorage.getItem('role') || 'doctor')
 const adminStats = ref(null)
@@ -38,7 +38,7 @@ const adminStats = ref(null)
 onMounted(async () => {
   if (role.value === 'admin') {
     try {
-      const { data } = await api.get("doctors/dashboard/stats/")
+      const { data } = await api.get('doctors/dashboard/stats/')
       adminStats.value = data
     } catch (e) {
       console.error(e)

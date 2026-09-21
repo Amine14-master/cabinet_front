@@ -1,17 +1,28 @@
 <template>
   <div>
-    <header
-      class="sticky top-0 flex flex-col w-full bg-white border-slate-200/80 z-20 lg:border-b"
-    >
+    <header class="sticky top-0 flex flex-col w-full bg-white border-slate-200/80 z-20 lg:border-b">
       <!-- Network State Banner -->
       <div
         v-if="!isOnline"
         class="w-full bg-[#f79009] text-white px-4 py-2 text-center text-xs font-semibold flex items-center justify-center gap-2"
       >
-        <svg class="w-4 h-4 animate-pulse shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        <svg
+          class="w-4 h-4 animate-pulse shrink-0"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+          />
         </svg>
-        <span>Mode Hors-Ligne (Offline) - Les données sont sauvegardées localement et seront synchronisées dès le rétablissement de la connexion.</span>
+        <span
+          >Mode Hors-Ligne (Offline) - Les données sont sauvegardées localement et seront
+          synchronisées dès le rétablissement de la connexion.</span
+        >
         <span v-if="pendingSyncCount > 0" class="ml-2 bg-white/20 px-2 py-0.5 rounded text-[10px]">
           {{ pendingSyncCount }} actions en attente
         </span>
@@ -23,10 +34,18 @@
       >
         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
         <span>Connecté - Données synchronisées</span>
-        <button @click="forceRefresh" class="ml-2 underline text-emerald-600 hover:text-emerald-700 text-[11px]">
+        <button
+          @click="forceRefresh"
+          class="ml-2 underline text-emerald-600 hover:text-emerald-700 text-[11px]"
+        >
           Actualiser
         </button>
-        <button @click="showOnlineChip = false" class="ml-1 text-emerald-400 hover:text-emerald-600 text-sm">×</button>
+        <button
+          @click="showOnlineChip = false"
+          class="ml-1 text-emerald-400 hover:text-emerald-600 text-sm"
+        >
+          ×
+        </button>
       </div>
 
       <div class="flex flex-col items-center justify-between grow lg:flex-row lg:px-6">
@@ -101,7 +120,12 @@
             class="flex items-center gap-1.5 px-4 py-2 text-xs font-bold bg-brand-50 text-brand-600 rounded-xl hover:bg-brand-100 transition-colors shadow-sm"
           >
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
             </svg>
             Scanner QR Patient
           </button>
@@ -130,17 +154,35 @@
       <div class="bg-white rounded-3xl p-6 w-full max-w-md space-y-6 shadow-xl text-center">
         <div class="flex justify-between items-center pb-2 border-b border-gray-100">
           <h3 class="font-bold text-lg text-gray-900">Scanner QR Code Patient</h3>
-          <button @click="scannerOpen = false" class="text-gray-400 hover:text-gray-900 text-lg">×</button>
+          <button @click="scannerOpen = false" class="text-gray-400 hover:text-gray-900 text-lg">
+            ×
+          </button>
         </div>
 
         <!-- Simulation of Camera Scanner -->
-        <div class="relative w-full aspect-square max-w-[280px] mx-auto bg-gray-900 rounded-2xl overflow-hidden border border-gray-700 flex items-center justify-center">
-          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/20 to-transparent animate-[pulse_2s_infinite]"></div>
+        <div
+          class="relative w-full aspect-square max-w-[280px] mx-auto bg-gray-900 rounded-2xl overflow-hidden border border-gray-700 flex items-center justify-center"
+        >
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/20 to-transparent animate-[pulse_2s_infinite]"
+          ></div>
           <!-- Scanning red line simulation -->
-          <div class="absolute top-0 left-0 right-0 h-0.5 bg-red-500 animate-[bounce_3s_infinite]"></div>
+          <div
+            class="absolute top-0 left-0 right-0 h-0.5 bg-red-500 animate-[bounce_3s_infinite]"
+          ></div>
 
-          <svg class="w-16 h-16 text-white/40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <svg
+            class="w-16 h-16 text-white/40"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
           </svg>
         </div>
 
@@ -248,7 +290,7 @@ const submitManualCode = () => {
       title: 'Code Patient validé',
       text: `Redirection vers le dossier du patient ${code}`,
       timer: 2000,
-      showConfirmButton: false
+      showConfirmButton: false,
     })
     router.push(`/patients/${code}`)
   } else if (code.startsWith('AP-')) {
@@ -259,7 +301,7 @@ const submitManualCode = () => {
       title: 'Ticket Rendez-vous validé',
       text: `Rendez-vous ${code} enregistré dans la file du jour`,
       timer: 2000,
-      showConfirmButton: false
+      showConfirmButton: false,
     })
     router.push('/dashboard')
   } else {
