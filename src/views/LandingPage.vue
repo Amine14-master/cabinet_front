@@ -147,41 +147,69 @@
 
           <!-- Right side: Masonry Grid -->
 
-          <!-- Right side: New Modern Hero Image -->
-          <div class="hero-image relative w-full opacity-0">
-            <div class="relative w-full aspect-[4/3] max-w-2xl ml-auto rounded-[3rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.1)] group z-20">
-              <!-- Main Image -->
-              <img src="/images/hero_main.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+          <!-- Right side: Modern Collage -->
+          <div class="hero-image relative w-full h-[450px] sm:h-[500px] lg:h-[600px] opacity-0 xl:pl-10 mt-12 xl:mt-0">
+            
+            <!-- Main Large Image (Bottom Left) -->
+            <div class="absolute bottom-0 left-0 w-[75%] h-[80%] rounded-[3rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.12)] dark:shadow-[0_30px_60px_rgba(0,0,0,0.4)] group z-20 border-[8px] border-white dark:border-gray-950 transition-transform duration-700 hover:scale-[1.02]">
+              <img src="/images/digital_apointement.png" class="w-full h-full object-cover object-left group-hover:scale-110 transition-transform duration-1000" alt="Book Appointment" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none"></div>
               
-              <!-- Subtle gradient overlay -->
-              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
-              
-              <!-- Floating Widget: Trust & Reviews -->
-              <div class="absolute bottom-6 left-6 bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl p-4 rounded-2xl shadow-xl border border-white/50 dark:border-gray-800/50 flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300">
-                <div class="flex -space-x-2">
+              <!-- Floating Widget: Trust -->
+              <div class="absolute bottom-6 left-6 bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl px-4 py-3 rounded-2xl shadow-xl border border-white/50 dark:border-gray-800/50 flex items-center gap-3 transform hover:-translate-y-1 transition-transform duration-300">
+                 <div class="flex -space-x-2">
                   <img class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" />
                   <img class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100" />
                   <img class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" />
                 </div>
                 <div>
-                  <div class="flex gap-1 text-amber-400">
-                    <svg v-for="i in 5" :key="i" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                  <div class="flex text-amber-400 gap-0.5">
+                    <svg v-for="i in 5" :key="i" class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                   </div>
-                  <p class="text-xs font-bold text-gray-900 dark:text-white mt-1">Excellent 5/5</p>
-                </div>
-              </div>
-              
-              <!-- Floating Widget: Quick Action -->
-              <div class="absolute top-8 right-6 bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl p-4 rounded-2xl shadow-xl border border-white/50 dark:border-gray-800/50 flex items-center gap-3 hover:-translate-y-1 transition-transform duration-300">
-                <div class="w-12 h-12 bg-[#00d0ff] rounded-xl flex items-center justify-center text-white shadow-[0_4px_15px_rgba(0,208,255,0.4)]">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                </div>
-                <div>
-                  <p class="text-[11px] text-gray-500 font-medium uppercase tracking-wider">Disponibilité</p>
-                  <p class="text-sm font-extrabold text-gray-900 dark:text-white">24/7 Digital</p>
+                  <p class="text-[11px] font-bold text-gray-900 dark:text-white mt-0.5">Avis 5 sur 5</p>
                 </div>
               </div>
             </div>
+
+            <!-- Top Right Image -->
+            <div class="absolute top-0 right-0 w-[55%] h-[55%] rounded-[2.5rem] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.15)] group z-10 border-[8px] border-white dark:border-gray-950 transition-transform duration-700 hover:scale-[1.04] hover:z-30">
+              <img src="/images/doctor_with_pc.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt="Doctor" />
+              <!-- Glassmorphism play/action button -->
+              <div class="absolute top-4 right-4 w-12 h-12 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md rounded-full flex items-center justify-center text-gray-900 dark:text-white shadow-lg border border-white/50 group-hover:bg-[#00d0ff] group-hover:text-white group-hover:border-transparent group-hover:shadow-[0_0_20px_rgba(0,208,255,0.4)] transition-all duration-300 cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </div>
+            </div>
+
+            <!-- Bottom Right Image -->
+            <div class="absolute bottom-[8%] -right-[2%] w-[45%] h-[40%] rounded-[2rem] overflow-hidden shadow-[0_15px_35px_rgba(0,208,255,0.2)] group z-30 border-[8px] border-white dark:border-gray-950 transition-transform duration-700 hover:scale-[1.06] bg-blue-50 dark:bg-blue-900">
+              <img src="/images/Protecting_Patient_Data.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 mix-blend-multiply opacity-90 dark:opacity-80" alt="Secure Data" />
+              
+              <!-- Floating Icon -->
+              <div class="absolute top-4 right-4 w-10 h-10 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-lg text-gray-900 dark:text-white border border-gray-100 dark:border-gray-700 group-hover:rotate-45 transition-transform duration-300 cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+              </div>
+            </div>
+            
+            <!-- Floating Social Icons (Right Side) -->
+            <div class="absolute top-1/2 -right-8 -translate-y-1/2 flex flex-col gap-3 z-40 hidden md:flex">
+              <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center text-gray-500 shadow-md border border-gray-100 dark:border-gray-700 hover:text-[#00d0ff] hover:-translate-x-1 transition-all">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center text-gray-500 shadow-md border border-gray-100 dark:border-gray-700 hover:text-[#00d0ff] hover:-translate-x-1 transition-all delay-75">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center text-gray-500 shadow-md border border-gray-100 dark:border-gray-700 hover:text-[#00d0ff] hover:-translate-x-1 transition-all delay-150">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              </a>
+            </div>
+            
+            <!-- Decorative Elements -->
+            <div class="absolute -top-6 -left-6 w-24 h-24 bg-[radial-gradient(#00d0ff_2px,transparent_2px)] [background-size:16px_16px] opacity-20 z-0"></div>
+            <div class="absolute -bottom-10 right-10 w-32 h-32 bg-[radial-gradient(#00d0ff_2px,transparent_2px)] [background-size:16px_16px] opacity-20 z-0"></div>
+            
+            <div class="absolute top-[40%] -left-8 w-24 h-24 bg-[#00d0ff]/20 blur-3xl rounded-full z-0 animate-pulse"></div>
+            <div class="absolute bottom-[20%] -right-8 w-32 h-32 bg-blue-500/20 blur-3xl rounded-full z-0 animate-pulse delay-700"></div>
+
           </div>
         </div>
       </div>
