@@ -716,30 +716,37 @@
             class="pb-12"
           >
             <!-- Card 1 -->
-            <swiper-slide v-for="(feat, index) in t.treatments.items" :key="index" class="h-auto">
+            <swiper-slide v-for="(feat, index) in t.treatments.items" :key="index" class="h-auto py-6">
               <div
-                class="h-full bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl border border-gray-100 dark:border-gray-700 flex flex-col hover:-translate-y-2 transition-transform duration-300"
+                class="group h-full bg-white/60 dark:bg-gray-800/60 backdrop-blur-2xl rounded-3xl p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-white/80 dark:border-gray-700/50 flex flex-col hover:-translate-y-4 hover:scale-[1.02] hover:shadow-[0_20px_40px_rgba(0,208,255,0.15)] transition-all duration-500"
               >
-                <div
-                  class="w-16 h-16 bg-[#eefcfc] dark:bg-gray-700 rounded-2xl flex items-center justify-center text-[#00d0ff] mb-6"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-8 w-8"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    v-html="feat.svg"
-                  ></svg>
+                <!-- Image with Icon overlay -->
+                <div class="w-full h-48 rounded-2xl overflow-hidden mb-6 relative shadow-inner">
+                  <img :src="feat.img" :alt="feat.title" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  
+                  <!-- Floating Glass Icon -->
+                  <div class="absolute bottom-4 left-4 w-12 h-12 bg-white/30 dark:bg-black/30 backdrop-blur-md rounded-xl flex items-center justify-center text-white border border-white/40 shadow-lg group-hover:-translate-y-1 group-hover:bg-[#00d0ff]/90 transition-all duration-300">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      v-html="feat.svg"
+                    ></svg>
+                  </div>
                 </div>
-                <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                  {{ feat.title }}
-                </h4>
-                <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-6 flex-grow">
-                  {{ feat.desc }}
-                </p>
-                <router-link
+
+                <div class="px-2 flex flex-col flex-grow">
+                  <h4 class="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                    {{ feat.title }}
+                  </h4>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-6 flex-grow">
+                    {{ feat.desc }}
+                  </p>
+                  <router-link
                   to="/signin"
                   class="inline-flex items-center justify-center px-4 py-1.5 rounded-md bg-[#00d0ff] text-white text-xs font-bold w-fit hover:bg-[#00bce6] transition-colors"
                 >
@@ -755,6 +762,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
                   </svg>
                 </router-link>
+                </div>
               </div>
             </swiper-slide>
           </swiper>
@@ -1653,31 +1661,37 @@ const translations = {
           title: 'Agenda Connecté',
           desc: 'Consultez les disponibilités en temps réel et prenez rendez-vous 24h/24.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />',
+          img: '/images/carousel/agenda_connecte.jpg',
         },
         {
           title: 'Téléconsultation',
           desc: 'Consultez votre médecin à distance en toute sécurité avec ordonnance digitale.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />',
+          img: '/images/carousel/teleconsultation.jpg',
         },
         {
           title: 'Dossier Sécurisé',
           desc: 'Vos données médicales sont cryptées de bout en bout dans un espace privé.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />',
+          img: '/images/carousel/dossier_securise.jpg',
         },
         {
           title: 'Ordonnances Digitales',
           desc: 'Recevez vos ordonnances en toute sécurité prêtes à être partagées.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />',
+          img: '/images/carousel/ordonnances_digitales.jpg',
         },
         {
           title: 'Suivi Personnalisé',
           desc: 'Visualisez lévolution de votre santé avec un tableau de bord intuitif.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />',
+          img: '/images/carousel/suivi_personnalise.jpg',
         },
         {
           title: 'Paiement Sécurisé',
           desc: 'Payez vos consultations en ligne avec notre système de paiement sécurisé.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />',
+          img: '/images/carousel/paiement_securise.jpg',
         },
       ],
     },
@@ -1787,31 +1801,37 @@ const translations = {
           title: 'Primary Care',
           desc: 'Our Primary Care ensures your health with personalized, comprehensive care.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />',
+          img: '/images/carousel/agenda_connecte.jpg',
         },
         {
           title: 'Pediatric Services',
           desc: 'Provide compassionate, comprehensive care for infants, children.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />',
+          img: '/images/carousel/teleconsultation.jpg',
         },
         {
           title: 'Cardiology',
           desc: 'Advanced cardiology services for heart health and disease prevention.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />',
+          img: '/images/carousel/dossier_securise.jpg',
         },
         {
           title: 'Dermatology',
           desc: 'Provide diagnosis and treatment for various skin conditions.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />',
+          img: '/images/carousel/ordonnances_digitales.jpg',
         },
         {
           title: 'Personalized Tracking',
           desc: 'Visualize your health progress with an intuitive dashboard.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />',
+          img: '/images/carousel/suivi_personnalise.jpg',
         },
         {
           title: 'Secure Payment',
           desc: 'Pay for your online consultations securely with our payment gateway.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />',
+          img: '/images/carousel/paiement_securise.jpg',
         },
       ],
     },
@@ -1920,31 +1940,37 @@ const translations = {
           title: 'الرعاية الأولية',
           desc: 'تضمن الرعاية الأولية لدينا صحتك من خلال رعاية شخصية وشاملة.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />',
+          img: '/images/carousel/agenda_connecte.jpg',
         },
         {
           title: 'خدمات طب الأطفال',
           desc: 'توفير رعاية شاملة وعطوفة للرضع والأطفال.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />',
+          img: '/images/carousel/teleconsultation.jpg',
         },
         {
           title: 'طب القلب',
           desc: 'خدمات طب القلب المتقدمة لصحة القلب والوقاية من الأمراض.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />',
+          img: '/images/carousel/dossier_securise.jpg',
         },
         {
           title: 'طب الأمراض الجلدية',
           desc: 'توفير التشخيص والعلاج للأمراض الجلدية المختلفة.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />',
+          img: '/images/carousel/ordonnances_digitales.jpg',
         },
         {
           title: 'متابعة شخصية',
           desc: 'تصور تطور صحتك بفضل لوحة تحكم بديهية.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />',
+          img: '/images/carousel/suivi_personnalise.jpg',
         },
         {
           title: 'دفع آمن',
           desc: 'ادفع مقابل استشاراتك عبر الإنترنت بشكل آمن.',
           svg: '<path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />',
+          img: '/images/carousel/paiement_securise.jpg',
         },
       ],
     },
