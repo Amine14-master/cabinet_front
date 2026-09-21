@@ -147,203 +147,39 @@
 
           <!-- Right side: Masonry Grid -->
 
-          <!-- Right side: New Masonry Grid -->
+          <!-- Right side: New Modern Hero Image -->
           <div class="hero-image relative w-full opacity-0">
-            <div class="relative w-full aspect-[4/3] max-w-2xl ml-auto">
-              <!-- Floating Left Widget -->
-              <div
-                class="absolute -left-10 sm:-left-16 top-1/4 z-30 bg-white shadow-xl rounded-2xl p-3 flex flex-col items-center gap-2 scale-90 sm:scale-100"
-              >
+            <div class="relative w-full aspect-[4/3] max-w-2xl ml-auto rounded-[3rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.1)] group z-20">
+              <!-- Main Image -->
+              <img src="/images/hero_main.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+              
+              <!-- Subtle gradient overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+              
+              <!-- Floating Widget: Trust & Reviews -->
+              <div class="absolute bottom-6 left-6 bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl p-4 rounded-2xl shadow-xl border border-white/50 dark:border-gray-800/50 flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300">
                 <div class="flex -space-x-2">
-                  <img
-                    class="w-8 h-8 rounded-full border-2 border-white object-cover"
-                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100"
-                  />
-                  <img
-                    class="w-8 h-8 rounded-full border-2 border-white object-cover"
-                    src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100"
-                  />
-                  <img
-                    class="w-8 h-8 rounded-full border-2 border-white object-cover"
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100"
-                  />
-                  <img
-                    class="w-8 h-8 rounded-full border-2 border-white object-cover"
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100"
-                  />
+                  <img class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" />
+                  <img class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100" />
+                  <img class="w-10 h-10 rounded-full border-2 border-white dark:border-gray-800 object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100" />
                 </div>
-                <p class="text-xs font-medium text-gray-600">Avis 5 sur 5</p>
-              </div>
-
-              <!-- Main Portrait -->
-              <div
-                class="absolute bottom-0 left-0 w-[55%] h-[90%] rounded-[2.5rem] overflow-hidden shadow-2xl z-20"
-              >
-                <img
-                  src="/images/digital_apointement.png"
-                  class="w-full h-full object-cover"
-                />
-
-                <!-- Floating Bottom Widget -->
-                <div
-                  class="absolute -bottom-2 -right-4 bg-white rounded-2xl p-4 shadow-xl z-30 w-48 translate-x-1/2 -translate-y-6"
-                >
-                  <div class="flex gap-1 mb-1">
-                    <svg
-                      v-for="i in 5"
-                      :key="i"
-                      class="w-4 h-4 text-gray-900"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
-                      ></path>
-                    </svg>
+                <div>
+                  <div class="flex gap-1 text-amber-400">
+                    <svg v-for="i in 5" :key="i" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
                   </div>
-                  <p class="text-[10px] text-gray-500 mb-2">
-                    Note de 5 étoiles sur différentes plateformes
-                  </p>
-                  <a href="#" class="text-[11px] font-bold text-gray-900 border-b border-gray-900"
-                    >Explorer plus</a
-                  >
-                </div>
-
-                <!-- Arrow button on portrait -->
-                <div
-                  class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-gray-50 cursor-pointer transition"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 text-gray-900"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
+                  <p class="text-xs font-bold text-gray-900 dark:text-white mt-1">Excellent 5/5</p>
                 </div>
               </div>
-
-              <!-- Top Right Image -->
-              <div
-                class="absolute top-0 right-0 w-[55%] h-[42%] rounded-[2rem] overflow-hidden shadow-xl z-10"
-              >
-                <img
-                  src="/images/doctor_with_pc.png"
-                  class="w-full h-full object-cover"
-                />
-                <!-- Arrow overlay -->
-                <div
-                  class="absolute top-4 right-4 w-10 h-10 bg-[#00d0ff] rounded-full flex items-center justify-center shadow-lg hover:scale-105 cursor-pointer transition"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 text-white"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
+              
+              <!-- Floating Widget: Quick Action -->
+              <div class="absolute top-8 right-6 bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl p-4 rounded-2xl shadow-xl border border-white/50 dark:border-gray-800/50 flex items-center gap-3 hover:-translate-y-1 transition-transform duration-300">
+                <div class="w-12 h-12 bg-[#00d0ff] rounded-xl flex items-center justify-center text-white shadow-[0_4px_15px_rgba(0,208,255,0.4)]">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                 </div>
-              </div>
-
-              <!-- Bottom Right Image -->
-              <div
-                class="absolute bottom-[5%] right-[5%] w-[45%] h-[40%] rounded-[2rem] overflow-hidden shadow-xl z-0 bg-blue-100"
-              >
-                <img
-                  src="/images/Protecting_Patient_Data.png"
-                  class="w-full h-full object-cover opacity-90 mix-blend-multiply"
-                />
-                <div
-                  class="absolute top-3 right-3 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-gray-50 cursor-pointer transition"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-4 w-4 text-gray-900"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
+                <div>
+                  <p class="text-[11px] text-gray-500 font-medium uppercase tracking-wider">Disponibilité</p>
+                  <p class="text-sm font-extrabold text-gray-900 dark:text-white">24/7 Digital</p>
                 </div>
-              </div>
-
-              <!-- Floating Social Icons -->
-              <div class="absolute -right-4 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-30">
-                <a
-                  href="#"
-                  class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-500 shadow-md hover:text-[#00d0ff]"
-                  ><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg
-                ></a>
-                <a
-                  href="#"
-                  class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-500 shadow-md hover:text-[#00d0ff]"
-                  ><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path
-                      d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-                    ></path>
-                    <rect x="2" y="9" width="4" height="12"></rect>
-                    <circle cx="4" cy="4" r="2"></circle></svg
-                ></a>
-                <a
-                  href="#"
-                  class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-500 shadow-md hover:text-[#00d0ff]"
-                  ><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                    <line x1="5" y1="12" x2="19" y2="12"></line></svg
-                ></a>
               </div>
             </div>
           </div>
