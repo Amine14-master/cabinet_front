@@ -1239,8 +1239,11 @@
                 </svg>
               </div>
               <div>
-                <p class="text-xs text-gray-400">{{ t.banner.call }}</p>
-                <p class="text-lg font-bold text-white">+33 1 23 45 67 89</p>
+                <p class="text-xs text-gray-400 mb-1">{{ t.banner.call }}</p>
+                <div class="flex flex-col gap-1">
+                  <a href="tel:+213552171158" class="text-lg font-bold text-white hover:text-[#00d0ff] transition-colors leading-none">+213 552 17 11 58</a>
+                  <a href="tel:+213672302733" class="text-lg font-bold text-white hover:text-[#00d0ff] transition-colors leading-none">+213 672 30 27 33</a>
+                </div>
               </div>
             </div>
             <router-link
