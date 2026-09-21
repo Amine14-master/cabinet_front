@@ -800,24 +800,17 @@
               1
             </div>
 
-            <!-- Icon Wrapper -->
-            <div
-              class="w-28 h-28 mx-auto bg-gradient-to-br from-blue-50 to-[#00d0ff]/10 dark:from-blue-900/30 dark:to-[#00d0ff]/20 rounded-[2rem] flex items-center justify-center mb-8 relative z-10 border border-white/50 dark:border-[#00d0ff]/10 shadow-lg shadow-[#00d0ff]/5 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-[#00d0ff]/20 transition-all duration-500"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-14 w-14 text-[#00d0ff] filter drop-shadow-md"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
+            <!-- Image Wrapper -->
+            <div class="relative w-full h-48 mx-auto rounded-[2rem] overflow-hidden mb-8 border border-white/50 shadow-inner group-hover:shadow-[0_10px_30px_rgba(0,208,255,0.2)] transition-all duration-500 z-10">
+              <img src="/images/process/process_appointment.jpg" alt="Step 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+              
+              <!-- Floating Icon -->
+              <div class="absolute bottom-4 right-4 w-12 h-12 bg-white/30 dark:bg-black/30 backdrop-blur-md rounded-xl flex items-center justify-center text-white border border-white/40 shadow-lg group-hover:-translate-y-1 group-hover:bg-[#00d0ff]/90 transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
             </div>
             
             <h4 class="text-2xl font-extrabold text-gray-900 dark:text-white mb-4 relative z-10 group-hover:text-[#00d0ff] transition-colors duration-300">
@@ -845,24 +838,17 @@
               2
             </div>
 
-            <!-- Icon Wrapper -->
-            <div
-              class="w-28 h-28 mx-auto bg-gradient-to-br from-blue-50 to-[#00d0ff]/10 dark:from-blue-900/30 dark:to-[#00d0ff]/20 rounded-[2rem] flex items-center justify-center mb-8 relative z-10 border border-white/50 dark:border-[#00d0ff]/10 shadow-lg shadow-[#00d0ff]/5 group-hover:scale-110 group-hover:-rotate-3 group-hover:shadow-[#00d0ff]/20 transition-all duration-500"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-14 w-14 text-[#00d0ff] filter drop-shadow-md"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
+            <!-- Image Wrapper -->
+            <div class="relative w-full h-48 mx-auto rounded-[2rem] overflow-hidden mb-8 border border-white/50 shadow-inner group-hover:shadow-[0_10px_30px_rgba(0,208,255,0.2)] transition-all duration-500 z-10">
+              <img src="/images/process/process_doctor.jpg" alt="Step 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+              
+              <!-- Floating Icon -->
+              <div class="absolute bottom-4 right-4 w-12 h-12 bg-white/30 dark:bg-black/30 backdrop-blur-md rounded-xl flex items-center justify-center text-white border border-white/40 shadow-lg group-hover:-translate-y-1 group-hover:bg-[#00d0ff]/90 transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
             </div>
             
             <h4 class="text-2xl font-extrabold text-gray-900 dark:text-white mb-4 relative z-10 group-hover:text-[#00d0ff] transition-colors duration-300">
@@ -890,24 +876,17 @@
               3
             </div>
 
-            <!-- Icon Wrapper -->
-            <div
-              class="w-28 h-28 mx-auto bg-gradient-to-br from-blue-50 to-[#00d0ff]/10 dark:from-blue-900/30 dark:to-[#00d0ff]/20 rounded-[2rem] flex items-center justify-center mb-8 relative z-10 border border-white/50 dark:border-[#00d0ff]/10 shadow-lg shadow-[#00d0ff]/5 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-[#00d0ff]/20 transition-all duration-500"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-14 w-14 text-[#00d0ff] filter drop-shadow-md"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="1.5"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+            <!-- Image Wrapper -->
+            <div class="relative w-full h-48 mx-auto rounded-[2rem] overflow-hidden mb-8 border border-white/50 shadow-inner group-hover:shadow-[0_10px_30px_rgba(0,208,255,0.2)] transition-all duration-500 z-10">
+              <img src="/images/process/process_solution.jpg" alt="Step 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+              
+              <!-- Floating Icon -->
+              <div class="absolute bottom-4 right-4 w-12 h-12 bg-white/30 dark:bg-black/30 backdrop-blur-md rounded-xl flex items-center justify-center text-white border border-white/40 shadow-lg group-hover:-translate-y-1 group-hover:bg-[#00d0ff]/90 transition-all duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
             </div>
             
             <h4 class="text-2xl font-extrabold text-gray-900 dark:text-white mb-4 relative z-10 group-hover:text-[#00d0ff] transition-colors duration-300">
